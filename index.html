@@ -303,26 +303,6 @@
     Example
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-lambda-api-gateway" title="AWS Lambda + API Gateway" class="md-nav__link">
-    AWS Lambda + API Gateway
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#azure-functions" title="Azure Functions" class="md-nav__link">
-    Azure Functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -425,26 +405,6 @@
     Example
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-lambda-api-gateway" title="AWS Lambda + API Gateway" class="md-nav__link">
-    AWS Lambda + API Gateway
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#azure-functions" title="Azure Functions" class="md-nav__link">
-    Azure Functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -487,6 +447,8 @@
 <ul>
 <li><a href="https://github.com/Azure/azure-functions-python-library">azure-functions</a> - Required for <code>azure_handler</code>.</li>
 </ul>
+<p>This can be installed with:</p>
+<p><code>pip3 install mangum[full]</code></p>
 <h2 id="example">Example</h2>
 <p>Below is a basic ASGI application example that can be used with handler methods:</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
@@ -507,7 +469,7 @@
 </pre></div>
 
 
-<h3 id="aws-lambda-api-gateway">AWS Lambda + API Gateway</h3>
+<p><strong>AWS Lambda + API Gateway</strong></p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.handlers.aws</span> <span class="kn">import</span> <span class="n">aws_handler</span>
 
 <span class="k">def</span> <span class="nf">asgi_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -515,7 +477,7 @@
 </pre></div>
 
 
-<h3 id="azure-functions">Azure Functions</h3>
+<p><strong>Azure Functions</strong></p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.handlers.azure</span> <span class="kn">import</span> <span class="n">azure_handler</span>
 
 <span class="k">def</span> <span class="nf">asgi_handler</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
