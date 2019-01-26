@@ -559,7 +559,7 @@
 <p>Only two platforms are currently supported, but if you'd like to see others, please open an issue.</p>
 <h3 id="aws-lambda-api-gateway">AWS Lambda / API Gateway</h3>
 <h4 id="example">Example</h4>
-<p>Below is a basic ASGI application example that can be used with the handler methods:</p>
+<p>Below is a basic ASGI application example using the AWS run method:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.adapters.aws</span> <span class="kn">import</span> <span class="n">run_asgi</span>
 
 <span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
@@ -607,7 +607,7 @@
 </ul>
 <h3 id="azure-functions">Azure Functions</h3>
 <h4 id="example_1">Example</h4>
-<p>The same example application above may be used with Azure Functions:</p>
+<p>The same example application as above may be used with the Azure run method:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.adapters.azure</span> <span class="kn">import</span> <span class="n">run_asgi</span>
 
 
