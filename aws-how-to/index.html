@@ -460,19 +460,29 @@
 </li>
 </ul>
 <p>Once the initial configuration step is complete, you should have an app structure that looks like this:</p>
-<div class="codehilite"><pre><span></span>├── README.md
-├── my_project
+<div class="codehilite"><pre><span></span>├── hello_world_project
+│   ├── README.md
 │   ├── app.py
-│   ├── mangum/
-│   ├── requirements.txt
+│   ├── build
 │   └── template.yaml
+├── requirements.txt
 └── settings.json
 </pre></div>
 
 
 <h3 id="step-2-packaging-and-deployment">Step 2 - Packaging and deployment</h3>
-<p>You will then be prompted to enter the following commands, these are simply wrappers around the AWS-CLI commands using the <code>settings.json</code> values generated previously as arguments.</p>
+<p>You will then be prompted to enter the package and deploy commands, the <code>settings.json</code> file is used to inform the parameters used with the methods that wrap the AWS CLI commands.</p>
+<p>The package command also populates the <code>build/</code> directory by installing the packages in the <code>requirements.txt</code>, by default the <code>mangum</code> package will appear.</p>
 <div class="codehilite"><pre><span></span>$ mangum package
+</pre></div>
+
+
+<p>After running the package command the build directory should look like this:</p>
+<div class="codehilite"><pre><span></span>│   ├── build
+│   │   ├── app.py
+│   │   ├── bin
+│   │   ├── mangum
+│   │   └── mangum-x.x.x-pyx.x.egg-info
 </pre></div>
 
 
@@ -515,11 +525,7 @@
 </pre></div>
 
 
-<p>You would also have to include Starlette as a dependency in the package:</p>
-<div class="codehilite"><pre><span></span>$ pip3 install . -t starlette
-</pre></div>
-
-
+<p>You would also have to include Starlette as a dependency in the package by adding it to the <code>requirements.txt</code>.</p>
 <p>And re-run the <code>mangum package</code> and <code>mangum deploy</code> commands to update the function.</p>
 <h3 id="additional-considerations">Additional considerations</h3>
 <p>The application generation and deployment tools included in Mangum are mainly intended to quickly produce and deploy a very basic boilerplate application.</p>
