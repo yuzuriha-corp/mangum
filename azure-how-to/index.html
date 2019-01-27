@@ -440,7 +440,6 @@
                 
                 <h1 id="how-to-deploy-an-asgi-app-to-azure-functions">How to deploy an ASGI app to Azure Functions</h1>
 <p>This guide will explain how to deploy a basic <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> application to Azure Functions. There is also an <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-python">official guide</a> that explains much of the same information.</p>
-<p>The complete example project is available <a href="https://github.com/erm/azure-functions-python-asgi-example">here</a>.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Python 3.6</li>
@@ -488,8 +487,11 @@
 
 <p>then visit the URL displayed in the terminal, e.g. http://localhost:7071/api/HttpTrigger.</p>
 <h2 id="step-4-implement-a-basic-asgi-application">Step 4 - Implement a basic ASGI application</h2>
-<p>Install Mangum from pip:</p>
-<p><code>pip install mangum</code></p>
+<p>Install Mangum from pip, the full installation is required for Azure Functions support:</p>
+<div class="codehilite"><pre><span></span>$ pip install mangum<span class="o">[</span>full<span class="o">]</span>
+</pre></div>
+
+
 <p>This will provide a handler method that adapts the Azure Function request events into requests that an ASGI app can understand.</p>
 <p>In the current project folder, open the file located at <code>&lt;project name&gt;/HttpTrigger/__init__.py</code> in an editor. The default app code will look something like this:</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
@@ -522,7 +524,7 @@
 <p>Replace this completely with the following and save:</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">azure.functions</span> <span class="kn">as</span> <span class="nn">func</span>
-<span class="kn">from</span> <span class="nn">mangum.adapters.azure</span> <span class="kn">import</span> <span class="n">run_asgi</span>
+<span class="kn">from</span> <span class="nn">mangum.platforms.azure.adapter</span> <span class="kn">import</span> <span class="n">run_asgi</span>
 
 
 <span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
