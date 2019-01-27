@@ -315,6 +315,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#as-a-middleware" title="As a middleware" class="md-nav__link">
+    As a middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mangum-cli-experimental" title="Mangum CLI (experimental)" class="md-nav__link">
     Mangum CLI (experimental)
   </a>
@@ -451,6 +458,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#as-a-middleware" title="As a middleware" class="md-nav__link">
+    As a middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mangum-cli-experimental" title="Mangum CLI (experimental)" class="md-nav__link">
     Mangum CLI (experimental)
   </a>
@@ -505,6 +519,7 @@
                 
                 
                 <h1 id="mangum">Mangum</h1>
+<p><strong>Documentation</strong>: https://erm.github.io/mangum/</p>
 <p><a href="https://pypi.org/project/mangum/">
     <img src="https://badge.fury.io/py/mangum.svg" alt="Package version">
 </a>
@@ -526,7 +541,7 @@
 <li><a href="https://github.com/Azure/azure-functions-python-library">azure-functions</a> - Required for Azure.</li>
 <li><a href="https://github.com/boto/boto3">boto3</a> - Required for the AWS CLI commands.</li>
 </ul>
-<p>This can be installed with:</p>
+<p>These can be installed with:</p>
 <div class="codehilite"><pre><span></span>$ pip3 install mangum<span class="o">[</span>full<span class="o">]</span>
 </pre></div>
 
@@ -559,29 +574,48 @@
 </pre></div>
 
 
+<h4 id="as-a-middleware">As a middleware</h4>
+<p>The same application above can be run using the <code>AWSLambdaMiddleware</code>. Currently it just implements a class that returns the <code>run_asgi</code> response.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.middleware</span> <span class="kn">import</span> <span class="n">AWSLambdaMiddleware</span>
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">AWSLambdaMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">)(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+
+
 <h4 id="mangum-cli-experimental">Mangum CLI (experimental)</h4>
-<p>Experimental AWS packaging/deployment support to generate, package, and deploy an application. This requires installation of the optional dependencies for AWS:</p>
+<p>Experimental AWS packaging/deployment support. This requires installation of the optional dependencies for AWS:</p>
 <div class="codehilite"><pre><span></span>$ pip install mangum<span class="o">[</span>full<span class="o">]</span>
 </pre></div>
 
 
-<p>It also requires the AWS CLI and AWS credentials.</p>
+<p>It also requires:</p>
+<ul>
+<li>AWS CLI</li>
+<li>AWS credentials.</li>
+</ul>
 <p>The available commands are briefly outlined below, but there is also a quickstart guide <a href="https://erm.github.io/mangum/aws-how-to/">here</a>:</p>
 <ul>
 <li>
-<p><code>mangum init</code> - Create a new application and deployment configuration.</p>
+<p><code>mangum aws init</code> - Create a new configuration template for an application.</p>
 </li>
 <li>
-<p><code>mangum package</code> - Package the local project to prepare for deployment.</p>
+<p><code>mangum aws build</code> - Install the requirements and copy the application files into the build directory.</p>
 </li>
 <li>
-<p><code>mangum deploy</code> - Deploy the packaged application to AWS.</p>
+<p><code>mangum aws package</code> - Package the local project to prepare for deployment.</p>
 </li>
 <li>
-<p><code>mangum tail</code> - Tail the last 10 minutes of CloudWatch for the function.</p>
+<p><code>mangum aws deploy</code> - Deploy the packaged application to AWS.</p>
 </li>
 <li>
-<p><code>mangum describe</code> - Retrieve the API endpoints for the function.</p>
+<p><code>mangum aws tail</code> - Tail the last 10 minutes of CloudWatch for the function.</p>
+</li>
+<li>
+<p><code>mangum aws describe</code> - Retrieve the API endpoints for the function.</p>
+</li>
+<li>
+<p><code>mangum aws validate</code> - Validate the SAM template in the current configuration.</p>
 </li>
 </ul>
 <h3 id="azure-functions">Azure Functions</h3>
@@ -606,7 +640,7 @@
             <span class="p">)</span>
             <span class="n">await</span> <span class="n">send</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.body&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">})</span>
 
-<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">run_asgi</span><span class="p">(</span><span class="n">App</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
 </pre></div>
 

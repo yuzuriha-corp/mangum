@@ -310,22 +310,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-packaging-and-deployment" title="Step 2 - Packaging and deployment" class="md-nav__link">
-    Step 2 - Packaging and deployment
+  <a href="#step-2-build-the-application" title="Step 2 - Build the application" class="md-nav__link">
+    Step 2 - Build the application
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-asgi-frameworks" title="Using ASGI frameworks" class="md-nav__link">
-    Using ASGI frameworks
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-considerations" title="Additional considerations" class="md-nav__link">
-    Additional considerations
+  <a href="#step-3-packaging-for-deployment" title="Step 3 - Packaging for deployment" class="md-nav__link">
+    Step 3 - Packaging for deployment
   </a>
   
 </li>
@@ -382,22 +375,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-packaging-and-deployment" title="Step 2 - Packaging and deployment" class="md-nav__link">
-    Step 2 - Packaging and deployment
+  <a href="#step-2-build-the-application" title="Step 2 - Build the application" class="md-nav__link">
+    Step 2 - Build the application
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-asgi-frameworks" title="Using ASGI frameworks" class="md-nav__link">
-    Using ASGI frameworks
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-considerations" title="Additional considerations" class="md-nav__link">
-    Additional considerations
+  <a href="#step-3-packaging-for-deployment" title="Step 3 - Packaging for deployment" class="md-nav__link">
+    Step 3 - Packaging for deployment
   </a>
   
 </li>
@@ -425,8 +411,8 @@
                 
                 
                 <h1 id="how-to-deploy-an-asgi-app-to-aws-lambda-api-gateway">How to deploy an ASGI app to AWS Lambda &amp; API Gateway</h1>
-<p>This guide will explain how to deploy a basic <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> application to AWS Lambda &amp; API Gateway. Mangum includes tools to assist with generating an example ASGI application using a <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">AWS SAM (Serverless Application Model)</a> template.</p>
-<p><strong>Note</strong>: These commands-much like most of the project currently-are being actively developed and may be buggy.</p>
+<p>This guide will explain how to generate a basic AWS Lambda deployment configuration suitable for <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications. Mangum includes tools to assist with generating <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">AWS SAM (Serverless Application Model)</a> templates and handling packaging/deployment. </p>
+<p><strong>Note</strong>: The AWS configuration generation methods are currently experimental (may change).</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>Python 3.6+</li>
@@ -439,54 +425,64 @@
 </pre></div>
 
 
-<p>Begin the process of generating a project:</p>
+<p>Begin the process of generating a project. You should initiate this in a directory above your application:</p>
 <div class="codehilite"><pre><span></span>$ mangum init
 </pre></div>
 
 
-<p>After answering a series of questions, the following will be generated in the current directory:</p>
+<p>After answering a series of questions, a few boilerplate configuration files will be generated in the current directory:</p>
 <ul>
-<li>
-<p>A boilerplate ASGI app with the latest version of <code>mangum</code> installed from PyPi for deployment to AWS.</p>
-</li>
-<li>
-<p>A <code>settings.json</code> file with the generated AWS resource information.</p>
-</li>
-<li>
-<p>An S3 bucket to be used with the app.</p>
-</li>
-<li>
-<p>A <code>template.yaml</code> containing the AWS SAM template.</p>
-</li>
+<li><code>settings.json</code></li>
 </ul>
-<p>Once the initial configuration step is complete, you should have an app structure that looks like this:</p>
-<div class="codehilite"><pre><span></span>├── hello_world_project
-│   ├── README.md
-│   ├── app.py
-│   ├── build
-│   └── template.yaml
-├── requirements.txt
-└── settings.json
+<p>The file with all the AWS resource details, needed to inform the AWS CLI wrapper methods with the correct parameters. This should not be modified directly.</p>
+<ul>
+<li><code>template.yaml</code></li>
+</ul>
+<p>The AWS SAM template used to define the resources/stack. This may be modified as needed to specify additional configuration according to the SAM spec.</p>
+<ul>
+<li><code>requirements.txt</code></li>
+</ul>
+<p>All that Python packages that should be installed in the build directory. It contains only <code>mangum</code> by default as it is the only requirement for the ASGI adapter.</p>
+<ul>
+<li><code>asgi.py</code></li>
+</ul>
+<p>This is the module that is specified in the generated SAM template. It contains the following:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.middleware</span> <span class="kn">import</span> <span class="n">AWSLambdaMiddleware</span>
+
+<span class="c1"># from &lt;yourapp&gt; import app</span>
+
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">AWSLambdaMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">)(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </pre></div>
 
 
-<h3 id="step-2-packaging-and-deployment">Step 2 - Packaging and deployment</h3>
-<p>You will then be prompted to enter the package and deploy commands, the <code>settings.json</code> file is used to inform the parameters used with the methods that wrap the AWS CLI commands.</p>
-<p>The package command also populates the <code>build/</code> directory by installing the packages in the <code>requirements.txt</code>, by default the <code>mangum</code> package will appear.</p>
+<p>You will need to modify the <code>asgi.py</code> file to import your application to be run by the middleware. Alternatively, you may update the <code>template.yaml</code> to point directly to a different handler location - the <code>asgi.py</code> is included for convenience.</p>
+<p>After generating the configuration, the file structure should look something like this:</p>
+<div class="codehilite"><pre><span></span>├── YourProject
+│   ├── YourApp/
+│   ├── asgi.py
+│   ├── packaged.yaml
+│   ├── requirements.txt
+│   ├── settings.json
+│   └── template.yaml
+</pre></div>
+
+
+<h3 id="step-2-build-the-application">Step 2 - Build the application</h3>
+<p>Next you will be prompted to run:</p>
+<div class="codehilite"><pre><span></span>$ mangum aws build
+</pre></div>
+
+
+<p>This will install all the packages listed in <code>requirements.txt</code> and copy over your application to the <code>build/</code> directory to be packaged.</p>
+<h3 id="step-3-packaging-for-deployment">Step 3 - Packaging for deployment</h3>
+<p>Next run the package command to prepare the application build for deployment:</p>
 <div class="codehilite"><pre><span></span>$ mangum package
 </pre></div>
 
 
-<p>After running the package command the build directory should look like this:</p>
-<div class="codehilite"><pre><span></span>│   ├── build
-│   │   ├── app.py
-│   │   ├── bin
-│   │   ├── mangum
-│   │   └── mangum-x.x.x-pyx.x.egg-info
-</pre></div>
-
-
-<p>After packaging, you then can deploy:</p>
+<p>After the packaging completes, you may then deploy:</p>
 <div class="codehilite"><pre><span></span>$ mangum deploy
 </pre></div>
 
@@ -499,50 +495,12 @@
 </pre></div>
 
 
-<p>Visiting the endpoint should then produce a simple "Hello World" response. If you run into any issues, you can lookup the function logs in CloudWatch or enter the following command:</p>
+<p>If you run into any issues, you can lookup the function logs in CloudWatch or enter the following command:</p>
 <div class="codehilite"><pre><span></span>$ mangum tail
 </pre></div>
 
 
 <p>This will tail the last 10 minutes of logs activity for the function.</p>
-<h3 id="using-asgi-frameworks">Using ASGI frameworks</h3>
-<p>The generated "hello world" application is a raw example, but you can easily use any ASGI framework with the adapter. For example, you could replace the content of the <code>app.py</code> generated previously with a Starlette application to achieve a similar result:</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.adapter</span> <span class="kn">import</span> <span class="n">run_asgi</span>
-
-<span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
-<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">()</span>
-
-
-<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="n">async</span> <span class="k">def</span> <span class="nf">homepage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">({</span><span class="s2">&quot;hello&quot;</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span><span class="p">})</span>
-
-
-<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">run_asgi</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</pre></div>
-
-
-<p>You would also have to include Starlette as a dependency in the package by adding it to the <code>requirements.txt</code>.</p>
-<p>And re-run the <code>mangum package</code> and <code>mangum deploy</code> commands to update the function.</p>
-<h3 id="additional-considerations">Additional considerations</h3>
-<p>The application generation and deployment tools included in Mangum are mainly intended to quickly produce and deploy a very basic boilerplate application.</p>
-<p><strong>Keep in mind:</strong></p>
-<ul>
-<li>
-<p>As of this writing, only simple application examples have been tested with the adapters (work-in-progress).</p>
-</li>
-<li>
-<p>AWS SAM templates are not the only way to handle deployment and configuration, it was chosen here because it offered the path of least resistance to getting an app generated and deployed with all the necessary permissions/resources/roles/etc. included.</p>
-</li>
-<li>
-<p>You will need to manually edit the generated AWS SAM template to extend the functionality of the stack and leverage additional AWS services.</p>
-</li>
-</ul>
-<p>At some point it would be nice to improve the CLI tool to be more comprehensive with some validation/safety features and possibly a way to eliminate the AWS-CLI as a requirement for deployment/packaging. </p>
-<p>There is an open issue for doing so <a href="https://github.com/erm/mangum/issues/10">here</a>.</p>
                 
                   
                 
