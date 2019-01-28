@@ -489,9 +489,7 @@
 <p>Only two platforms are currently supported, but if you'd like to see others, please open an issue.</p>
 <h3 id="aws-lambda-api-gateway">AWS Lambda / API Gateway</h3>
 <p>To make an ASGI application compatible with AWS Lambda &amp; AWS Gateway, wrap it in the <code>AWSLambdaMiddleware</code>:</p>
-<div class="codehilite"><pre><span></span><span class="c1"># asgi.py</span>
-
-<span class="kn">from</span> <span class="nn">mangum.platforms.aws.middleware</span> <span class="kn">import</span> <span class="n">AWSLambdaMiddleware</span>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.middleware</span> <span class="kn">import</span> <span class="n">AWSLambdaMiddleware</span>
 <span class="kn">from</span> <span class="nn">yourapp.app</span> <span class="kn">import</span> <span class="n">app</span>
 
 
@@ -499,7 +497,8 @@
 </pre></div>
 
 
-<p>For this example, you would need to specify your lambda event handler as <code>asgi.handler</code>.</p>
+<p>For this example, you would need to specify your lambda event handler as <code>asgi.handler</code>. </p>
+<p><strong>Note</strong>: This platform middleware can also use an optional <code>debug</code> argument to return unhandled errors raised by the application. It should NOT be enabled outside of development.</p>
 <h3 id="azure-functions">Azure Functions</h3>
 <p>Similarly as above, wrap the application using the <code>AzureFunctionMiddleware</code>:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.azure.middleware</span> <span class="kn">import</span> <span class="n">AzureFunctionMiddleware</span>
