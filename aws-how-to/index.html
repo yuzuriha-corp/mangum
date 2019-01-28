@@ -447,15 +447,15 @@
 <li><code>asgi.py</code></li>
 </ul>
 <p>This is the module that is specified in the generated SAM template. It contains the following:</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.middleware</span> <span class="kn">import</span> <span class="n">AWSLambdaMiddleware</span>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.adapter</span> <span class="kn">import</span> <span class="n">AWSLambdaAdapter</span>
 <span class="kn">from</span> <span class="nn">YourApp.app</span> <span class="kn">import</span> <span class="n">app</span>
 
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">AWSLambdaMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># optionally set debug=True</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">AWSLambdaAdapter</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># optionally set debug=True</span>
 </pre></div>
 
 
-<p>You will need to modify the <code>asgi.py</code> file to import your application to be run by the middleware. Alternatively, you may update the <code>template.yaml</code> to point directly to a different handler location - the <code>asgi.py</code> is included for convenience.</p>
+<p>You will need to modify the <code>asgi.py</code> file to import your application to be run by the adapter. Alternatively, you may update the <code>template.yaml</code> to point directly to a different handler location - the <code>asgi.py</code> is included for convenience.</p>
 <p>After generating the configuration, the file structure should look something like this:</p>
 <div class="codehilite"><pre><span></span>├── YourProject
 │   ├── YourApp/
