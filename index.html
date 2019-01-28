@@ -316,19 +316,6 @@
     Dependencies
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mangum-cli-experimental" title="Mangum CLI (experimental)" class="md-nav__link">
-    Mangum CLI (experimental)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -348,8 +335,8 @@
 
 
   <li class="md-nav__item">
-    <a href="azure-how-to/" title="How to deploy an ASGI app to Azure Functions" class="md-nav__link">
-      How to deploy an ASGI app to Azure Functions
+    <a href="azure-how-to.md" title="None" class="md-nav__link">
+      None
     </a>
   </li>
 
@@ -360,8 +347,8 @@
 
 
   <li class="md-nav__item">
-    <a href="aws-how-to/" title="How to deploy an ASGI app to AWS Lambda & API Gateway" class="md-nav__link">
-      How to deploy an ASGI app to AWS Lambda & API Gateway
+    <a href="aws-how-to.md" title="None" class="md-nav__link">
+      None
     </a>
   </li>
 
@@ -432,19 +419,6 @@
     Dependencies
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mangum-cli-experimental" title="Mangum CLI (experimental)" class="md-nav__link">
-    Mangum CLI (experimental)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -481,7 +455,7 @@
 
 
 <h2 id="supported-platforms">Supported Platforms</h2>
-<p>Only two platforms are currently supported, but if you'd like to see others, please open an issue.</p>
+<p>Only two platforms are currently supported, but if you'd like to see others, please open an <a href="https://github.com/erm/mangum/issues">issue</a>.</p>
 <h3 id="aws-lambda-api-gateway">AWS Lambda / API Gateway</h3>
 <p>To make an ASGI application compatible with AWS Lambda &amp; API Gateway, wrap it with the <code>AWSLambdaAdapter</code>:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.adapter</span> <span class="kn">import</span> <span class="n">AWSLambdaAdapter</span>
@@ -494,6 +468,7 @@
 
 <p>You would then need to specify <code>&lt;path&gt;.handler</code> in your AWS Lambda configuration.</p>
 <p><strong>Note</strong>: This platform adapter can also use an optional <code>debug</code> argument to return unhandled errors raised by the application. It should NOT be enabled outside of development.</p>
+<p>An example application can be found <a href="https://github.com/erm/asgi-examples/tree/master/mangum/aws">here</a>.</p>
 <h3 id="azure-functions">Azure Functions</h3>
 <p>Similarly as above, wrap the application with the <code>AzureFunctionAdapter</code>:</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.azure.adapter</span> <span class="kn">import</span> <span class="n">AzureFunctionAdapter</span>
@@ -504,59 +479,12 @@
 </pre></div>
 
 
-<p>A basic quickstart guide for using Azure Functions with Mangum is outlined <a href="https://erm.github.io/mangum/azure-how-to/">here</a>.</p>
+<p>An example application can be found <a href="https://github.com/erm/azure-functions-python-asgi-example/">here</a>.</p>
 <h2 id="dependencies">Dependencies</h2>
-<p>There are required/optional dependencies for specific platforms being used, but the base install does not have any hard requirements:</p>
+<p>The base install does not have any hard requirements, but there are dependencies required depending on platform:</p>
 <p><code>azure-functions</code> - <em>required</em> for Azure Function support. Can be installed using:</p>
 <div class="codehilite"><pre><span></span>$ pip3 install mangum<span class="o">[</span>azure<span class="o">]</span>
 </pre></div>
-
-
-<p><code>boto3</code>, <code>click</code> - <em>required</em> for the AWS-specific CLI tools (this is NOT required in deployments):</p>
-<div class="codehilite"><pre><span></span>$ pip3 install mangum<span class="o">[</span>aws<span class="o">]</span>
-</pre></div>
-
-
-<p>Everything can be installed with:</p>
-<div class="codehilite"><pre><span></span>$ pip3 install mangum<span class="o">[</span>full<span class="o">]</span>
-</pre></div>
-
-
-<h3 id="mangum-cli-experimental">Mangum CLI (experimental)</h3>
-<p>Experimental AWS packaging/deployment support. This requires installation of the optional dependencies for AWS:</p>
-<div class="codehilite"><pre><span></span>$ pip install mangum<span class="o">[</span>aws<span class="o">]</span>
-</pre></div>
-
-
-<p>It also requires:</p>
-<ul>
-<li>AWS CLI</li>
-<li>AWS credentials.</li>
-</ul>
-<p>The available commands are briefly outlined below, but there is also a quickstart guide <a href="https://erm.github.io/mangum/aws-how-to/">here</a>:</p>
-<ul>
-<li>
-<p><code>mangum aws init</code> - Create a new configuration template for an application.</p>
-</li>
-<li>
-<p><code>mangum aws build</code> - Install the requirements and copy the application files into the build directory.</p>
-</li>
-<li>
-<p><code>mangum aws package</code> - Package the local project to prepare for deployment.</p>
-</li>
-<li>
-<p><code>mangum aws deploy</code> - Deploy the packaged application to AWS.</p>
-</li>
-<li>
-<p><code>mangum aws tail</code> - Tail the last 10 minutes of CloudWatch for the function.</p>
-</li>
-<li>
-<p><code>mangum aws describe</code> - Retrieve the API endpoints for the function.</p>
-</li>
-<li>
-<p><code>mangum aws validate</code> - Validate the SAM template in the current configuration.</p>
-</li>
-</ul>
                 
                   
                 
@@ -573,27 +501,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-        
-          <a href="azure-how-to/" title="How to deploy an ASGI app to Azure Functions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                How to deploy an ASGI app to Azure Functions
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
