@@ -492,7 +492,7 @@
 </pre></div>
 
 
-<p>For this example, you would need to specify your lambda event handler as <code>asgi.handler</code>. </p>
+<p>You would then need to specify <code>&lt;path&gt;.handler</code> in your AWS Lambda configuration.</p>
 <p><strong>Note</strong>: This platform middleware can also use an optional <code>debug</code> argument to return unhandled errors raised by the application. It should NOT be enabled outside of development.</p>
 <h3 id="azure-functions">Azure Functions</h3>
 <p>Similarly as above, wrap the application using the <code>AzureFunctionMiddleware</code>:</p>
