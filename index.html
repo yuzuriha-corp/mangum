@@ -285,35 +285,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-platforms" title="Supported Platforms" class="md-nav__link">
-    Supported Platforms
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-lambda-api-gateway" title="AWS Lambda / API Gateway" class="md-nav__link">
-    AWS Lambda / API Gateway
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#azure-functions" title="Azure Functions" class="md-nav__link">
-    Azure Functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencies" title="Dependencies" class="md-nav__link">
-    Dependencies
+  <a href="#frameworks" title="Frameworks" class="md-nav__link">
+    Frameworks
   </a>
   
 </li>
@@ -364,35 +344,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-platforms" title="Supported Platforms" class="md-nav__link">
-    Supported Platforms
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-lambda-api-gateway" title="AWS Lambda / API Gateway" class="md-nav__link">
-    AWS Lambda / API Gateway
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#azure-functions" title="Azure Functions" class="md-nav__link">
-    Azure Functions
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dependencies" title="Dependencies" class="md-nav__link">
-    Dependencies
+  <a href="#frameworks" title="Frameworks" class="md-nav__link">
+    Frameworks
   </a>
   
 </li>
@@ -421,7 +381,7 @@
 <a href="https://travis-ci.org/erm/mangum">
     <img src="https://travis-ci.org/erm/mangum.svg?branch=master" alt="Build Status">
 </a></p>
-<p>Mangum is a library for using <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications with FaaS platforms.</p>
+<p>Mangum is a library for using <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications with AWS Lambda &amp; API Gateway.</p>
 <h2 id="requirements">Requirements</h2>
 <p>Python 3.6+</p>
 <h2 id="installation">Installation</h2>
@@ -429,37 +389,33 @@
 </pre></div>
 
 
-<h2 id="supported-platforms">Supported Platforms</h2>
-<p>Only two platforms are currently supported, but if you'd like to see others, please open an <a href="https://github.com/erm/mangum/issues">issue</a>.</p>
-<h3 id="aws-lambda-api-gateway">AWS Lambda / API Gateway</h3>
-<p>To make an ASGI application compatible with AWS Lambda &amp; API Gateway, wrap it with the <code>AWSLambdaAdapter</code>:</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.aws.adapter</span> <span class="kn">import</span> <span class="n">AWSLambdaAdapter</span>
-<span class="kn">from</span> <span class="nn">yourapp.app</span> <span class="kn">import</span> <span class="n">app</span>
+<h2 id="example">Example</h2>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
 
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">AWSLambdaAdapter</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># optionally set debug=True</span>
+<span class="k">class</span> <span class="nc">App</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scope</span> <span class="o">=</span> <span class="n">scope</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+        <span class="n">await</span> <span class="n">send</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.start&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;text/plain&quot;</span><span class="p">]],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">await</span> <span class="n">send</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.body&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">})</span>
+
+
+
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">App</span><span class="p">)</span>  <span class="c1"># optionally set debug=True</span>
 </pre></div>
 
 
 <p>You would then need to specify <code>&lt;path&gt;.handler</code> in your AWS Lambda configuration.</p>
-<p><strong>Note</strong>: This platform adapter can also use an optional <code>debug</code> argument to return unhandled errors raised by the application. It should NOT be enabled outside of development.</p>
-<p>An example application can be found <a href="https://github.com/erm/asgi-examples/tree/master/mangum/aws">here</a>.</p>
-<h3 id="azure-functions">Azure Functions</h3>
-<p>Similarly as above, wrap the application with the <code>AzureFunctionAdapter</code>:</p>
-<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum.platforms.azure.adapter</span> <span class="kn">import</span> <span class="n">AzureFunctionAdapter</span>
-<span class="kn">from</span> <span class="nn">yourapp.app</span> <span class="kn">import</span> <span class="n">app</span>
-
-
-<span class="n">handler</span> <span class="o">=</span> <span class="n">AzureFunctionAdapter</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</pre></div>
-
-
-<p>An example application can be found <a href="https://github.com/erm/azure-functions-python-asgi-example/">here</a>.</p>
-<h2 id="dependencies">Dependencies</h2>
-<p>The base install does not have any hard requirements, but there are dependencies required depending on platform:</p>
-<p><code>azure-functions</code> - <em>required</em> for Azure Function support. Can be installed using:</p>
-<div class="codehilite"><pre><span></span>$ pip3 install mangum<span class="o">[</span>azure<span class="o">]</span>
-</pre></div>
+<h2 id="frameworks">Frameworks</h2>
+<p>Any ASGI framework should work with Mangum, however there are cases where certain non-ASGI behaviour of an application will causes issues when deploying to a serverless platform.</p>
                 
                   
                 
