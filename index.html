@@ -302,6 +302,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="cli/" title="CLI" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -387,8 +399,8 @@
 <a href="https://travis-ci.org/erm/mangum">
     <img src="https://travis-ci.org/erm/mangum.svg?branch=master" alt="Build Status">
 </a></p>
-<p>Mangum is an adapter for using <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications with AWS Lambda &amp; API Gateway.</p>
-<p><strong>Status</strong>: This project may face periods of inactivity from time to time, but PRs are welcomed.</p>
+<p>Mangum is an adapter for using <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications with AWS Lambda &amp; API Gateway. It also provies an experimental CLI for handling deployments. This project may face periods of inactivity from time to time, but PRs are welcomed.</p>
+<p><strong>Documentation</strong>: <a href="https://erm.github.io/mangum">https://erm.github.io/mangum</a></p>
 <h2 id="requirements">Requirements</h2>
 <p>Python 3.7+</p>
 <h2 id="installation">Installation</h2>
@@ -407,6 +419,10 @@
 <p><code>spec_version</code> : int (default=3)</p>
 <p>Set the ASGI specification version. ASGI 3 uses a single-callable, ASGI 2 uses a double-callable.</p>
 </li>
+<li>
+<p><code>enable_lifespan</code> : bool (default=True)</p>
+<p>Specify whether or not to enable lifespan support.</p>
+</li>
 </ul>
 <h3 id="example">Example</h3>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mangum</span> <span class="k">import</span> <span class="n">Mangum</span>
@@ -422,7 +438,7 @@
     <span class="k">await</span> <span class="n">send</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.body&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">})</span>
 
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">enable_lifespan</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># disable lifespan for raw ASGI example</span>
 </pre></div>
 
 
@@ -444,6 +460,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="cli/" title="CLI" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                CLI
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
