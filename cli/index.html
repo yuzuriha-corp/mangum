@@ -270,6 +270,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands" title="Commands" class="md-nav__link">
     Commands
   </a>
@@ -363,6 +370,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installation" title="Installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands" title="Commands" class="md-nav__link">
     Commands
   </a>
@@ -441,8 +455,13 @@
 <ul>
 <li>Local AWS Credentials</li>
 <li><a href="https://aws.amazon.com/cli/">AWS CLI</a></li>
-<li><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">boto3</a></li>
 </ul>
+<h2 id="installation">Installation</h2>
+<p>There are two required dependencies for using the CLI, <code>boto3</code> and <code>click</code>, they can be installed with Mangum using this command:</p>
+<div class="codehilite"><pre><span></span>pip install mangum<span class="o">[</span>full<span class="o">]</span>
+</pre></div>
+
+
 <h2 id="commands">Commands</h2>
 <p><code>mangum init</code> - Create a new deployment configuration.</p>
 <p><code>mangum build</code> - Create a local build.</p>
@@ -477,6 +496,7 @@
 <span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Hello&quot;</span><span class="p">:</span> <span class="s2">&quot;World!&quot;</span><span class="p">}</span>
 
+
 <span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 </pre></div>
 
@@ -494,22 +514,15 @@ fastapi
 
 
 <h3 id="step-2-create-a-new-deployment-configuration">Step 2 - Create a new deployment configuration</h3>
-<p>Run the following command to answer a series of questions about the project to define a new configuration:</p>
-<div class="codehilite"><pre><span></span>mangum init
+<p>Run the following command with a name for the project (required) and optionally include the name of an S3 bucket and the region (these values can be changed later):</p>
+<div class="codehilite"><pre><span></span>mangum init &lt;name&gt; <span class="o">[</span>bucket-name<span class="o">]</span> <span class="o">[</span>region-name<span class="o">]</span>
 </pre></div>
 
 
-<p><strong>Note</strong>: An S3 bucket will be required for storing the packaged application. An existing S3 bucket name may be provided, otherwise one will be generated.</p>
-<p>For this tutorial, enter the following when prompted for the first two questions (use defaults for the rest):</p>
-<div class="codehilite"><pre><span></span>Enter the name of the directory containing the project code: app
-Enter a name <span class="k">for</span> the project: mangum
-</pre></div>
-
-
-<p>After defining the configuration a <code>config.json</code> file will be generated, the current directory should now look this:</p>
+<p>After defining the configuration a <code>mangum.yml</code> file will be generated, the current directory should now look this:</p>
 <div class="codehilite"><pre><span></span>├── app
 │   └── asgi.py
-├── config.json
+├── mangum.yml
 └── requirements.txt
 </pre></div>
 
@@ -527,7 +540,7 @@ Enter a name <span class="k">for</span> the project: mangum
 </pre></div>
 
 
-<p>This wraps the AWS CLI's <code>package</code> command, it uses the definitions in <code>config.json</code> to produce a <code>packaged.yaml</code> file and a <code>template.json</code> file.</p>
+<p>This wraps the AWS CLI's <code>package</code> command, it uses the definitions in <code>mangum.yml</code> to produce a <code>packaged.yml</code> file and a <code>template.yml</code> file.</p>
 <h3 id="step-5-deploy-the-packaged-build">Step 5 - Deploy the packaged build</h3>
 <p>Run the following command to deploy the packaged build:</p>
 <div class="codehilite"><pre><span></span>mangum deploy
