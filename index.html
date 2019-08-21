@@ -404,10 +404,6 @@
 <p>Enable a simple error response if an unhandled exception is raised in the adapter.</p>
 </li>
 <li>
-<p><code>spec_version</code> : int (default=3)</p>
-<p>Set the ASGI specification version. ASGI 3 uses a single-callable, ASGI 2 uses a double-callable.</p>
-</li>
-<li>
 <p><code>enable_lifespan</code> : bool (default=True)</p>
 <p>Specify whether or not to enable lifespan support.</p>
 </li>
@@ -431,7 +427,7 @@
 
 
 <h2 id="frameworks">Frameworks</h2>
-<p>Any ASGI framework should work with Mangum, however there are cases where certain non-ASGI behaviour of an application will cause issues when deploying to a serverless platform. You may also need to specify <code>spec_version=2</code> for frameworks that do not support the latest ASGI version.</p>
+<p>Any ASGI framework should work with Mangum, however there are cases where certain non-ASGI behaviour of an application will cause issues when deploying to a serverless platform.</p>
                 
                   
                 
