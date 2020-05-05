@@ -1,0 +1,902 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.4">
+    
+    
+      
+        <title>WebSockets - Mangum</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c4007cdc.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.8435c73a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#795548">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="brown" data-md-color-accent="orange">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#websockets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Mangum" class="md-header-nav__button md-logo" aria-label="Mangum">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Mangum
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              WebSockets
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/erm/mangum" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    erm/mangum
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mangum" class="md-nav__button md-logo" aria-label="Mangum">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Mangum
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/erm/mangum" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    erm/mangum
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../http/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        WebSockets
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="WebSockets" class="md-nav__link md-nav__link--active">
+      WebSockets
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect" class="md-nav__link">
+    CONNECT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    MESSAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disconnect" class="md-nav__link">
+    DISCONNECT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backends" class="md-nav__link">
+    Backends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamodb" class="md-nav__link">
+    DynamoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="DynamoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    S3
+  </a>
+  
+    <nav class="md-nav" aria-label="S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    Redis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlite3" class="md-nav__link">
+    SQlite3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_4" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-backends" class="md-nav__link">
+    Alternative backends
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect" class="md-nav__link">
+    CONNECT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    MESSAGE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disconnect" class="md-nav__link">
+    DISCONNECT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backends" class="md-nav__link">
+    Backends
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamodb" class="md-nav__link">
+    DynamoDB
+  </a>
+  
+    <nav class="md-nav" aria-label="DynamoDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    S3
+  </a>
+  
+    <nav class="md-nav" aria-label="S3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage_1" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_2" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    Redis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_3" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlite3" class="md-nav__link">
+    SQlite3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage_4" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-backends" class="md-nav__link">
+    Alternative backends
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="websockets">WebSockets</h1>
+<p>Mangum provides support for <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html">WebSocket API</a> events in API Gateway. The adapter class handles parsing the incoming requests and managing the ASGI cycle using a configured storage backend.</p>
+<h2 id="events">Events</h2>
+<p>There are WebSocket events sent by API Gateway for a WebSocket API connection. Each event requires returning a response and the initial scope information is only available in connect event, so a storage backend is required to persist the connection details.</p>
+<h4 id="connect">CONNECT</h4>
+<p>A persistent connection between the client and a WebSocket API is being initiated. The adapter uses a supported WebSocket backend to store the connection id and initial request information.</p>
+<h4 id="message">MESSAGE</h4>
+<p>A connected client has sent a message. The adapter will retrieve the initial request information from the backend using the connection id to form the ASGI connection <code>scope</code> and run the ASGI application cycle.</p>
+<h4 id="disconnect">DISCONNECT</h4>
+<p>The client or the server disconnects from the API. The adapter will remove the connection from the backend.</p>
+<h3 id="backends">Backends</h3>
+<p>A data source, such as a cloud database, is required in order to persist the connection identifiers in a 'serverless' environment. Any data source can be used as long as it is accessible remotely to the AWS Lambda function.</p>
+<p>All supported backends require a <code>dsn</code> connection string argument to configure the connection. Backends that already support connection strings, such as PostgreSQL and Redis, can use their existing syntax. Other backends, such as S3 and DynamoDB, are parsed with a custom syntax defined in the backend class.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;[postgresql|redis|dynamodb|s3|sqlite]://[...]&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The following backends are currently supported:</p>
+<ul>
+<li><code>dynamodb</code></li>
+<li><code>s3</code></li>
+<li><code>postgresql</code></li>
+<li><code>redis</code></li>
+<li><code>sqlite</code> (for local debugging)</li>
+</ul>
+<h3 id="dynamodb">DynamoDB</h3>
+<p>The <code>DynamoDBBackend</code> uses a <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a> table to store the connection details.</p>
+<h4 id="usage">Usage</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
+    <span class="n">app</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;dynamodb://mytable&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<h5 id="parameters">Parameters</h5>
+<p>The DynamoDB backend <code>dsn</code> uses the following connection string syntax:</p>
+<div class="codehilite"><pre><span></span><code>dynamodb://&lt;table_name&gt;[?region=&lt;region-name&gt;&amp;endpoint_url=&lt;url&gt;]
+</code></pre></div>
+
+
+<ul>
+<li>
+<p><code>table_name</code> (Required)</p>
+<p>The name of the table in DynamoDB.  </p>
+</li>
+<li>
+<p><code>region_name</code></p>
+<p>The region name of the DyanmoDB table.</p>
+</li>
+<li>
+<p><code>endpoint_url</code></p>
+<p>The endpoint url to use in DynamoDB calls. This is useful if you are debugging locally with a package such as <a href="https://github.com/99xt/serverless-dynamodb-local">serverless-dynamodb-local</a>.</p>
+</li>
+</ul>
+<h3 id="s3">S3</h3>
+<p>The <code>S3Backend</code> uses an (S3)<a href="https://aws.amazon.com/s3/">https://aws.amazon.com/s3/</a>] bucket as a key-value store to store the connection details.</p>
+<h4 id="usage_1">Usage</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
+    <span class="n">app</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;s3://my-bucket-12345&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<h5 id="parameters_1">Parameters</h5>
+<p>The S3 backend <code>dsn</code> uses the following connection string syntax:</p>
+<div class="codehilite"><pre><span></span><code>s3://&lt;bucket&gt;[/key/...][?region=&lt;region-name&gt;]
+</code></pre></div>
+
+
+<ul>
+<li>
+<p><code>bucket</code> (Required)</p>
+<p>The name of the bucket in S3.</p>
+</li>
+<li>
+<p><code>region_name</code></p>
+<p>The region name of the S3 bucket.</p>
+</li>
+</ul>
+<h3 id="postgresql">PostgreSQL</h3>
+<p>The <code>PostgreSQLBackend</code> requires <a href="https://github.com/psycopg/psycopg2">psycopg2</a> and access to a remote PostgreSQL database.</p>
+<h3 id="usage_2">Usage</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
+    <span class="n">app</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;postgresql://myuser:mysecret@my.host:5432/mydb&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<h5 id="parameters_2">Parameters</h5>
+<p>The PostgreSQL backend <code>dsn</code> uses the following connection string syntax:</p>
+<div class="codehilite"><pre><span></span><code>postgresql://[user[:password]@][host][:port][,...][/dbname][?param1=value1&amp;...]
+</code></pre></div>
+
+
+<p><code>host</code> (Required)</p>
+<div class="codehilite"><pre><span></span><code>The network location of the PostgreSQL database
+</code></pre></div>
+
+
+<p>Read more about the supported uri schemes and additional parameters <a href="https://www.postgresql.org/docs/10/libpq-connect.html#LIBPQ-CONNSTRING">here</a>.</p>
+<h3 id="redis">Redis</h3>
+<p>The <code>RedisBackend</code> requires (redis-py)[https://github.com/andymccurdy/redis-py] and access to a Redis server.</p>
+<h3 id="usage_3">Usage</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
+    <span class="n">app</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;redis://:mysecret@my.host:6379/0&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<h4 id="parameters_3">Parameters</h4>
+<p>The Redis backend <code>dsn</code> uses the following connection string syntax:</p>
+<div class="codehilite"><pre><span></span><code>redis://[[user:]password@]host[:port][/database]
+</code></pre></div>
+
+
+<ul>
+<li>
+<p><code>host</code> (required)</p>
+<p>The network location of the Redis server.</p>
+</li>
+</ul>
+<p>Read more about the supported uri schemes and additional parameters <a href="https://www.iana.org/assignments/uri-schemes/prov/redis">here</a>.</p>
+<h3 id="sqlite3">SQlite3</h3>
+<p>The <code>sqlite</code> backend uses a local <a href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> database to store connection. It is intended for <strong><em>local</em></strong> debugging (with a package such as <a href="https://github.com/dherault/serverless-offline">Serverless Offline</a>) and will <strong><em>not</em></strong> work in an AWS Lambda deployment.</p>
+<h3 id="usage_4">Usage</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
+    <span class="n">app</span><span class="p">,</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;sqlite://mydbfile.sqlite3&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+<h4 id="parameters_4">Parameters</h4>
+<p>The SQLite backend uses the following connection string syntax:</p>
+<div class="codehilite"><pre><span></span><code>sqlite://[file_path].db
+</code></pre></div>
+
+
+<ul>
+<li>
+<p><code>file_path</code> (Requred)</p>
+<p>The file name or path to an sqlite3 database file. If one does not exist, then it will be created automatically.</p>
+</li>
+</ul>
+<h3 id="alternative-backends">Alternative backends</h3>
+<p>If you'd like to see a specific data source supported as a backend, please open an <a href="https://github.com/erm/mangum/issues">issue</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../http/" title="HTTP" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                HTTP
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.83fe6e3c.min.js"></script>
+      <script src="../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.37585f48.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
