@@ -750,7 +750,7 @@
 </li>
 </ul>
 <h3 id="s3">S3</h3>
-<p>The <code>S3Backend</code> uses an (S3)<a href="https://aws.amazon.com/s3/">https://aws.amazon.com/s3/</a>] bucket as a key-value store to store the connection details.</p>
+<p>The <code>S3Backend</code> uses an <a href="https://aws.amazon.com/s3/">S3</a> bucket as a key-value store to store the connection details.</p>
 <h4 id="usage_1">Usage</h4>
 <div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
     <span class="n">app</span><span class="p">,</span>
@@ -791,11 +791,12 @@
 </code></pre></div>
 
 
+<ul>
+<li>
 <p><code>host</code> (Required)</p>
-<div class="codehilite"><pre><span></span><code>The network location of the PostgreSQL database
-</code></pre></div>
-
-
+<p>The network location of the PostgreSQL database</p>
+</li>
+</ul>
 <p>Read more about the supported uri schemes and additional parameters <a href="https://www.postgresql.org/docs/10/libpq-connect.html#LIBPQ-CONNSTRING">here</a>.</p>
 <h3 id="redis">Redis</h3>
 <p>The <code>RedisBackend</code> requires <a href="https://github.com/andymccurdy/redis-py">redis-py</a> and access to a Redis server.</p>
@@ -815,7 +816,7 @@
 
 <ul>
 <li>
-<p><code>host</code> (required)</p>
+<p><code>host</code> (Required)</p>
 <p>The network location of the Redis server.</p>
 </li>
 </ul>
@@ -838,7 +839,7 @@
 
 <ul>
 <li>
-<p><code>file_path</code> (Requred)</p>
+<p><code>file_path</code> (Required)</p>
 <p>The file name or path to an sqlite3 database file. If one does not exist, then it will be created automatically.</p>
 </li>
 </ul>
