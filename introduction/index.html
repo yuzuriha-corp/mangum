@@ -11,6 +11,8 @@
         <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
       
       
+        <link rel="canonical" href="http://mangum.io/introduction/">
+      
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.4">
@@ -69,7 +71,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="Mangum" class="md-header-nav__button md-logo" aria-label="Mangum">
+    <a href="http://mangum.io/" title="Mangum" class="md-header-nav__button md-logo" aria-label="Mangum">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -156,7 +158,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Mangum" class="md-nav__button md-logo" aria-label="Mangum">
+    <a href="http://mangum.io/" title="Mangum" class="md-nav__button md-logo" aria-label="Mangum">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -257,22 +259,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_1" class="md-nav__link">
-    Usage
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -401,22 +390,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_1" class="md-nav__link">
-    Usage
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -531,7 +507,6 @@
 
 <h2 id="configuration">Configuration</h2>
 <p>The adapter accepts various arguments for configuring lifespan, logging, HTTP, WebSocket, and API Gateway behaviour.</p>
-<h3 id="usage_1">Usage</h3>
 <div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span>
     <span class="n">app</span><span class="p">,</span>
     <span class="n">enable_lifespan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -545,7 +520,7 @@
 </code></pre></div>
 
 
-<h4 id="parameters">Parameters</h4>
+<h3 id="parameters">Parameters</h3>
 <ul>
 <li>
 <p><code>enable_lifespan</code> : <strong>bool</strong></p>
