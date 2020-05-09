@@ -11,7 +11,7 @@
         <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
       
       
-        <link rel="canonical" href="http://mangum.io/frameworks/">
+        <link rel="canonical" href="http://mangum.io/asgi/">
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -19,7 +19,7 @@
     
     
       
-        <title>Frameworks - Mangum</title>
+        <title>ASGI - Mangum</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#frameworks" class="md-skip">
+        <a href="#asgi" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Frameworks
+              ASGI
             
           </span>
         </div>
@@ -233,14 +233,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Frameworks
+        ASGI
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Frameworks" class="md-nav__link md-nav__link--active">
-      Frameworks
+    <a href="./" title="ASGI" class="md-nav__link md-nav__link--active">
+      ASGI
     </a>
     
       
@@ -263,12 +263,19 @@
     Background
   </a>
   
-    <nav class="md-nav" aria-label="Background">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frameworks" class="md-nav__link">
+    Frameworks
+  </a>
+  
+    <nav class="md-nav" aria-label="Frameworks">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    Middleware
+  <a href="#starlette" class="md-nav__link">
+    Starlette
   </a>
   
 </li>
@@ -321,8 +328,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    Limitations
+  <a href="#middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifespan" class="md-nav__link">
+    Lifespan
   </a>
   
 </li>
@@ -364,12 +378,19 @@
     Background
   </a>
   
-    <nav class="md-nav" aria-label="Background">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frameworks" class="md-nav__link">
+    Frameworks
+  </a>
+  
+    <nav class="md-nav" aria-label="Frameworks">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    Middleware
+  <a href="#starlette" class="md-nav__link">
+    Starlette
   </a>
   
 </li>
@@ -422,8 +443,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    Limitations
+  <a href="#middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifespan" class="md-nav__link">
+    Lifespan
   </a>
   
 </li>
@@ -444,8 +472,8 @@
                   
                 
                 
-                <h1 id="frameworks">Frameworks</h1>
-<p>Mangum is intended to be a universal ASGI adapter. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
+                <h1 id="asgi">ASGI</h1>
+<p>Mangum is intended to be a universal <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> (<em>Asynchronous Server Gateway Interface</em>) adapter. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
 <p><small>* if it doesn't, then please open an <a href="https://github.com/erm/mangum/issues">issue</a>. :)</small></p>
 <h2 id="background">Background</h2>
 <p>We can think about the ASGI framework support without referencing an existing implementation. There are no framework-specific rules or dependencies in the adapater class, and all applications will be treated the same.</p>
@@ -472,38 +500,13 @@
 </code></pre></div>
 
 
-<h3 id="middleware">Middleware</h3>
-<p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
-<p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
-<div class="codehilite"><pre><span></span><code> <span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span>
-        <span class="k">await</span> <span class="n">send</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.start&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-                <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;application/json&quot;</span><span class="p">]],</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-
-        <span class="k">await</span> <span class="n">send</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.body&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&quot;Hello world.&quot;</span><span class="p">})</span>
-
- <span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">))</span>
- <span class="err">```</span>
-
-<span class="c1">## Examples</span>
-
-<span class="n">The</span> <span class="n">examples</span> <span class="n">on</span> <span class="n">this</span> <span class="n">page</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">demonstrate</span> <span class="n">the</span> <span class="n">most</span> <span class="n">basic</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">framework</span> <span class="p">(</span><span class="n">usually</span> <span class="kn">from</span> <span class="nn">official</span> <span class="n">documentation</span><span class="p">)</span> <span class="n">to</span> <span class="n">highlight</span> <span class="n">the</span> <span class="n">interaction</span> <span class="k">with</span> <span class="n">Mangum</span><span class="o">.</span> <span class="n">Specific</span> <span class="n">deployment</span> <span class="n">tooling</span><span class="p">,</span> <span class="n">infrastructure</span><span class="p">,</span> <span class="n">external</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">taken</span> <span class="n">into</span> <span class="n">account</span><span class="o">.</span>
-
-<span class="c1">### Starlette</span>
-
-<span class="p">[</span><span class="n">Starlette</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">starlette</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="p">)</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">lightweight</span> <span class="n">ASGI</span> <span class="n">framework</span><span class="o">/</span><span class="n">toolkit</span><span class="p">,</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">ideal</span> <span class="k">for</span> <span class="n">building</span> <span class="n">high</span> <span class="n">performance</span> <span class="n">asyncio</span> <span class="n">services</span><span class="o">.</span>
-
-<span class="n">Mangum</span> <span class="n">uses</span> <span class="n">it</span> <span class="k">as</span> <span class="n">a</span> <span class="n">toolkit</span> <span class="ow">in</span> <span class="n">tests</span> <span class="ow">and</span> <span class="k">as</span> <span class="n">an</span> <span class="n">application</span> <span class="n">framework</span> <span class="ow">in</span> <span class="n">the</span> <span class="p">[</span><span class="n">example</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">erm</span><span class="o">/</span><span class="n">mangum</span><span class="o">-</span><span class="n">example</span><span class="p">)</span> <span class="n">project</span><span class="o">.</span> <span class="n">It</span> <span class="ow">is</span> <span class="n">developed</span> <span class="n">by</span> <span class="p">[</span><span class="n">Encode</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">encode</span><span class="p">),</span> <span class="n">a</span> <span class="n">wonderful</span> <span class="n">community</span> <span class="ow">and</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">projects</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">building</span> <span class="n">the</span> <span class="n">foundations</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Python</span> <span class="k">async</span> <span class="n">web</span> <span class="n">ecosystem</span><span class="o">.</span>
-
-<span class="n">Define</span> <span class="n">an</span> <span class="n">application</span><span class="p">:</span>
-
-<span class="err">```</span><span class="n">python</span>
-<span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<h2 id="frameworks">Frameworks</h2>
+<p>The examples on this page attempt to demonstrate the most basic implementation of a particular framework (usually from official documentation) to highlight the interaction with Mangum. Specific deployment tooling, infrastructure, external dependencies, etc. are not taken into account.</p>
+<h3 id="starlette">Starlette</h3>
+<p><a href="https://www.starlette.io/">Starlette</a> is a lightweight ASGI framework/toolkit, which is ideal for building high performance asyncio services.</p>
+<p>Mangum uses it as a toolkit in tests and as an application framework in the <a href="https://github.com/erm/mangum-example">example</a> project. It is developed by <a href="https://github.com/encode">Encode</a>, a wonderful community and collection of projects that is building the foundations of the Python async web ecosystem.</p>
+<p>Define an application:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
 <span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
 <span class="kn">from</span> <span class="nn">starlette.routing</span> <span class="kn">import</span> <span class="n">Route</span>
 <span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
@@ -636,7 +639,28 @@
 </code></pre></div>
 
 
-<h2 id="limitations">Limitations</h2>
+<h2 id="middleware">Middleware</h2>
+<p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
+<p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
+<p>```python
+ async def app(scope, receive, send):
+        assert scope["type"] == "http"
+        await send(
+            {
+                "type": "http.response.start",
+                "status": 200,
+                "headers": [[b"content-type", b"application/json"]],
+            }
+        )</p>
+<div class="codehilite"><pre><span></span><code>    await send({&quot;type&quot;: &quot;http.response.body&quot;, &quot;body&quot;: b&quot;Hello world.&quot;})
+</code></pre></div>
+
+
+<p>handler = Mangum(GZipMiddleware(app))
+ ```</p>
+<h2 id="lifespan">Lifespan</h2>
+<p>Mangum implements the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html">lifespan</a> ASGI sub-specification to support startup/shutdown events. Lifespan support is automatically determined by the adapter class unless explicitly disabled.</p>
+<h1 id="limitations">Limitations</h1>
 <p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on the specific deployment strategy.</p>
                 
               
