@@ -267,8 +267,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#middleware-example" class="md-nav__link">
-    Middleware example
+  <a href="#middleware" class="md-nav__link">
+    Middleware
   </a>
   
 </li>
@@ -368,8 +368,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#middleware-example" class="md-nav__link">
-    Middleware example
+  <a href="#middleware" class="md-nav__link">
+    Middleware
   </a>
   
 </li>
@@ -472,7 +472,7 @@
 </code></pre></div>
 
 
-<h3 id="middleware-example">Middleware example</h3>
+<h3 id="middleware">Middleware</h3>
 <p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
 <p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
 <div class="codehilite"><pre><span></span><code> <span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
@@ -490,7 +490,7 @@
  <span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">))</span>
  <span class="err">```</span>
 
-<span class="c1">## Frameworks</span>
+<span class="c1">## Examples</span>
 
 <span class="n">The</span> <span class="n">examples</span> <span class="n">on</span> <span class="n">this</span> <span class="n">page</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">demonstrate</span> <span class="n">the</span> <span class="n">most</span> <span class="n">basic</span> <span class="n">implementation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">framework</span> <span class="p">(</span><span class="n">usually</span> <span class="kn">from</span> <span class="nn">official</span> <span class="n">documentation</span><span class="p">)</span> <span class="n">to</span> <span class="n">highlight</span> <span class="n">the</span> <span class="n">interaction</span> <span class="k">with</span> <span class="n">Mangum</span><span class="o">.</span> <span class="n">Specific</span> <span class="n">deployment</span> <span class="n">tooling</span><span class="p">,</span> <span class="n">infrastructure</span><span class="p">,</span> <span class="n">external</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">taken</span> <span class="n">into</span> <span class="n">account</span><span class="o">.</span>
 
