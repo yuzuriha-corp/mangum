@@ -267,13 +267,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#generic-framework" class="md-nav__link">
-    Generic framework
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#middleware-example" class="md-nav__link">
     Middleware example
   </a>
@@ -375,13 +368,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#generic-framework" class="md-nav__link">
-    Generic framework
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#middleware-example" class="md-nav__link">
     Middleware example
   </a>
@@ -462,8 +448,7 @@
 <p>Mangum is intended to be a universal ASGI adapter. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
 <p><small>* if it doesn't, then please open an <a href="https://github.com/erm/mangum/issues">issue</a>. :)</small></p>
 <h2 id="background">Background</h2>
-<p>We can think about the ASGI framework support without referencing any specific implementation. There are no framework-specific rules or dependencies in the adapater class, and all applications will be treated the same.</p>
-<h3 id="generic-framework">Generic framework</h3>
+<p>We can think about the ASGI framework support without referencing an existing implementation. There are no framework-specific rules or dependencies in the adapater class, and all applications will be treated the same.</p>
 <p>Let's invent an API for a non-existent microframework to demonstrate things further. This could represent <strong><em>any</em></strong> ASGI framework application:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">framework</span>
 <span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
@@ -480,7 +465,7 @@
 </code></pre></div>
 
 
-<p>None of application details are important here: the routing decorator, request parameter, and return value of the endpoint method could be anything. The <code>app</code> instance will be a valid <code>app</code> parameter for Mangum so long as the framework exposes an ASGI-compatible interface:</p>
+<p>None of application details are important here. The routing decorator, request parameter, and return value of the endpoint method could be anything. The <code>app</code> instance will be a valid <code>app</code> parameter for Mangum so long as the framework exposes an ASGI-compatible interface:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">send</span><span class="p">:</span> <span class="n">Send</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="o">...</span>
@@ -488,7 +473,8 @@
 
 
 <h3 id="middleware-example">Middleware example</h3>
-<p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support.</p>
+<p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
+<p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
 <div class="codehilite"><pre><span></span><code> <span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span>
         <span class="k">await</span> <span class="n">send</span><span class="p">(</span>
@@ -542,7 +528,6 @@
 <p>That's it.</p>
 <h3 id="fastapi">FastAPI</h3>
 <p><a href="https://fastapi.tiangolo.com/">FastAPI</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. </p>
-<p>Define an application:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
 
