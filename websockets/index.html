@@ -275,12 +275,18 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backends" class="md-nav__link">
     Backends
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Backends">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#dynamodb" class="md-nav__link">
@@ -520,12 +526,18 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backends" class="md-nav__link">
     Backends
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Backends">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#dynamodb" class="md-nav__link">
@@ -718,7 +730,7 @@
 <p>A connected client has sent a message. The adapter will retrieve the initial request information from the backend using the connection id to form the ASGI connection <code>scope</code> and run the ASGI application cycle.</p>
 <h4 id="disconnect">DISCONNECT</h4>
 <p>The client or the server disconnects from the API. The adapter will remove the connection from the backend.</p>
-<h3 id="backends">Backends</h3>
+<h2 id="backends">Backends</h2>
 <p>A data source, such as a cloud database, is required in order to persist the connection identifiers in a 'serverless' environment. Any data source can be used as long as it is accessible remotely to the AWS Lambda function.</p>
 <p>All supported backends require a <code>dsn</code> connection string argument to configure the connection. Backends that already support connection strings, such as PostgreSQL and Redis, can use their existing syntax. Other backends, such as S3 and DynamoDB, are parsed with a custom syntax defined in the backend class.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;[postgresql|redis|dynamodb|s3|sqlite]://[...]&quot;</span><span class="p">)</span>
