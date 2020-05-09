@@ -328,6 +328,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="frameworks.dm" title="Frameworks" class="md-nav__link">
+      Frameworks
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -522,6 +534,10 @@
 <h3 id="parameters">Parameters</h3>
 <ul>
 <li>
+<p><code>app</code> : <strong><em>ASGI application</em></strong></p>
+<p>An asynchronous callable that conforms to ASGI specification version 3.0. This will usually be a framework application instance that exposes a valid ASGI callable.</p>
+</li>
+<li>
 <p><code>enable_lifespan</code> : <strong>bool</strong></p>
 <p>Specify whether or not to enable lifespan support. The adapter will automatically determine if lifespan is supported by the framework unless explicitly disabled.</p>
 </li>
@@ -544,14 +560,16 @@
 <li>
 <p><code>api_gateway_endpoint_url</code> : <strong>str</strong></p>
 <p>The endpoint url to use when sending data to WebSocket connections in API Gateway. This is useful if you are debugging locally with a package such as <a href="https://github.com/dherault/serverless-offline">serverless-offline</a>.</p>
+<p>Defaults to the <code>AWS_REGION</code> value in the AWS Lambda environment.</p>
 </li>
 <li>
 <p><code>api_gateway_region_name</code> : <strong>str</strong></p>
-<p>The region name of the API Gateway that is managing the API connections.</p>
+<p>The region name of the API Gateway contains the connections created by WebSocket APIs.</p>
+<p>Defaults to the <code>AWS_REGION</code> value in the AWS Lambda environment.</p>
 </li>
 </ul>
 <h2 id="examples">Examples</h2>
-<p>The examples below are "raw" ASGI applications with minimal configurations. You are more likely than not going to be using a framework, but you should be able to replace the <code>app</code> in these example with most ASGI framework applications. Please read the <a href="https://erm.github.io/mangum/http/">HTTP</a> and <a href="https://erm.github.io/mangum/websocket/">WebSocket</a> docs for more detailed configuration information.</p>
+<p>The examples below are ASGI applications (non-framework) with minimal configurations. You should be able to replace the <code>app</code> in these example with most ASGI framework application instances. Please read the <a href="https://erm.github.io/mangum/http/">HTTP</a> and <a href="https://erm.github.io/mangum/websocket/">WebSocket</a> docs for more detailed configuration information.</p>
 <h3 id="http">HTTP</h3>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
 
