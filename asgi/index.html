@@ -502,7 +502,7 @@
 <p>Mangum is intended to be a universal <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> (<em>Asynchronous Server Gateway Interface</em>) adapter. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
 <p><small>* if it doesn't, then please open an <a href="https://github.com/erm/mangum/issues">issue</a>. :)</small></p>
 <h2 id="background">Background</h2>
-<p>We can think about the ASGI framework support without referencing an existing implementation. There are no framework-specific rules or dependencies in the adapater class, and all applications will be treated the same.</p>
+<p>We can think about the ASGI framework support without referencing an existing implementation. There are no framework-specific rules or dependencies in the adapter class, and all applications will be treated the same.</p>
 <p>Let's invent an API for a non-existent microframework to demonstrate things further. This could represent <strong><em>any</em></strong> ASGI framework application:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">framework</span>
 <span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
