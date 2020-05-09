@@ -263,6 +263,19 @@
     Background
   </a>
   
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -377,6 +390,19 @@
   <a href="#background" class="md-nav__link">
     Background
   </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -500,6 +526,8 @@
 </code></pre></div>
 
 
+<h3 id="limitations">Limitations</h3>
+<p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on a particular deployment circumstance. In some cases it is possible to work around these limitations, such as how Mangum implements WebSocket <a href="https://mangum.io/websockets/#backends">backends</a> to persist connection details across instances, but these kinds of limitations should generally be dealt with outside of Mangum itself.</p>
 <h2 id="frameworks">Frameworks</h2>
 <p>The examples on this page attempt to demonstrate the most basic implementation of a particular framework (usually from official documentation) to highlight the interaction with Mangum. Specific deployment tooling, infrastructure, external dependencies, etc. are not taken into account.</p>
 <h3 id="starlette">Starlette</h3>
@@ -551,7 +579,7 @@
 
 
 <h3 id="responder">Responder</h3>
-<p><a href="https://responder.readthedocs.io/en/latest">Responder</a> is a familiar HTTP Service Framework for Python, powered by Starlette. The <code>static_dir</code> and <code>templates_dir</code> parameters must be set to none to disable Responder's automatic directory creation behaviour because AWS Lambda is a read-only file system - see the <a href="https://mangum.io/websockets/#limitations">limitations</a> section for more details.</p>
+<p><a href="https://responder.readthedocs.io/en/latest">Responder</a> is a familiar HTTP Service Framework for Python, powered by Starlette. The <code>static_dir</code> and <code>templates_dir</code> parameters must be set to none to disable Responder's automatic directory creation behaviour because AWS Lambda is a read-only file system - see the <a href="https://mangum.io/asgi/#limitations">limitations</a> section for more details.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
 <span class="kn">import</span> <span class="nn">responder</span>
 
@@ -660,8 +688,6 @@
 
 <h2 id="lifespan">Lifespan</h2>
 <p>Mangum implements the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html">lifespan</a> ASGI sub-specification to support startup/shutdown events. Lifespan support is automatically determined by the adapter class unless explicitly disabled.</p>
-<h1 id="limitations">Limitations</h1>
-<p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on the specific deployment strategy.</p>
                 
               
               
