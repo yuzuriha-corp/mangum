@@ -668,7 +668,7 @@
 
 
 <h2 id="middleware">Middleware</h2>
-<p>Other than framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
+<p>In addition to framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
 <p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
 <div class="codehilite"><pre><span></span><code> <span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span>

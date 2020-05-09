@@ -265,6 +265,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#event-and-context" class="md-nav__link">
+    Event and context
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -408,6 +415,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#event-and-context" class="md-nav__link">
+    Event and context
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -465,6 +479,7 @@
 </a>
 <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/mangum.svg?style=flat-square"></p>
 <p>Mangum is an adapter for using <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> applications with AWS Lambda &amp; API Gateway. It is intended to provide an easy-to-use, configurable wrapper for any ASGI application deployed in an AWS Lambda function to handle API Gateway requests and responses.</p>
+<p><strong><em>Documentation</em></strong>: https://mangum.io/</p>
 <h2 id="features">Features</h2>
 <ul>
 <li>
@@ -568,6 +583,13 @@
 <p>Defaults to the <code>AWS_REGION</code> value in the AWS Lambda environment.</p>
 </li>
 </ul>
+<h3 id="event-and-context">Event and context</h3>
+<p>The AWS Lambda handler has <code>event</code> and <code>context</code> parameters. These are available in the ASGI <code>scope</code> object:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">scope</span><span class="p">[</span><span class="s1">&#39;aws.event&#39;</span><span class="p">]</span>
+<span class="n">scope</span><span class="p">[</span><span class="s1">&#39;aws.context&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+
 <h2 id="examples">Examples</h2>
 <p>The examples below are ASGI applications (non-framework) with minimal configurations. You should be able to replace the <code>app</code> in these example with most ASGI framework application instances. Please read the <a href="https://erm.github.io/mangum/http/">HTTP</a> and <a href="https://erm.github.io/mangum/websocket/">WebSocket</a> docs for more detailed configuration information.</p>
 <h3 id="http">HTTP</h3>
