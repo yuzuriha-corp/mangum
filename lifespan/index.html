@@ -11,7 +11,7 @@
         <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
       
       
-        <link rel="canonical" href="http://mangum.io/http/">
+        <link rel="canonical" href="http://mangum.io/lifespan/">
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -19,7 +19,7 @@
     
     
       
-        <title>HTTP - Mangum</title>
+        <title>Lifespan - Mangum</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#http" class="md-skip">
+        <a href="#lifespan" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              HTTP
+              Lifespan
             
           </span>
         </div>
@@ -210,100 +210,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        HTTP
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="HTTP" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../http/" title="HTTP" class="md-nav__link">
       HTTP
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-binary-responses" class="md-nav__link">
-    Configuring binary responses
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring binary responses">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#text-mime-types" class="md-nav__link">
-    Text MIME types
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gzip" class="md-nav__link">
-    GZip
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    API
-  </a>
-  
-    <nav class="md-nav" aria-label="API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#httpcycle" class="md-nav__link">
-    HTTPCycle
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#httpcyclestate" class="md-nav__link">
-    HTTPCycleState
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -323,11 +234,106 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../lifespan/" title="Lifespan" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Lifespan
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Lifespan" class="md-nav__link md-nav__link--active">
       Lifespan
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-lifespan-events" class="md-nav__link">
+    Configuring Lifespan events
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Lifespan events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    API
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifespancycle" class="md-nav__link">
+    LifespanCycle
+  </a>
+  
+    <nav class="md-nav" aria-label="LifespanCycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context-manager" class="md-nav__link">
+    Context manager
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifespancyclestate" class="md-nav__link">
+    LifespanCycleState
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -381,23 +387,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuring-binary-responses" class="md-nav__link">
-    Configuring binary responses
+  <a href="#configuring-lifespan-events" class="md-nav__link">
+    Configuring Lifespan events
   </a>
   
-    <nav class="md-nav" aria-label="Configuring binary responses">
+    <nav class="md-nav" aria-label="Configuring Lifespan events">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#text-mime-types" class="md-nav__link">
-    Text MIME types
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gzip" class="md-nav__link">
-    GZip
+  <a href="#options" class="md-nav__link">
+    Options
   </a>
   
 </li>
@@ -416,15 +415,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#httpcycle" class="md-nav__link">
-    HTTPCycle
+  <a href="#lifespancycle" class="md-nav__link">
+    LifespanCycle
+  </a>
+  
+    <nav class="md-nav" aria-label="LifespanCycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#context-manager" class="md-nav__link">
+    Context manager
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
-  <a href="#httpcyclestate" class="md-nav__link">
-    HTTPCycleState
+  <a href="#lifespancyclestate" class="md-nav__link">
+    LifespanCycleState
   </a>
   
 </li>
@@ -450,79 +462,135 @@
                   
                 
                 
-                <h1 id="http">HTTP</h1>
-<p>Mangum provides support for both <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html">REST</a> and the newer <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html">HTTP</a> APIs in API Gateway. It also includes configurable binary response support.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
-<span class="kn">from</span> <span class="nn">fastapi.middleware.gzip</span> <span class="kn">import</span> <span class="n">GZipMiddleware</span>
-<span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
+                <h1 id="lifespan">Lifespan</h1>
+<p>Mangum supports the ASGI <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html">Lifespan</a> protocol. This allows applications to define lifespan startup and shutdown event handlers.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
-<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">,</span> <span class="n">minimum_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;startup&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">startup_event</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s2">&quot;shutdown&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown_event</span><span class="p">():</span>
+    <span class="k">pass</span>
 
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s2">&quot;somebigcontent&quot;</span>
+<span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Hello&quot;</span><span class="p">:</span> <span class="s2">&quot;World&quot;</span><span class="p">}</span>
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">TEXT_MIME_TYPES</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;application/vnd.some.type&quot;</span><span class="p">])</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">lifespan</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
-<h2 id="configuring-binary-responses">Configuring binary responses</h2>
-<p>Binary responses are determined using the <code>Content-Type</code> and <code>Content-Encoding</code> headers from the event request and a list of text MIME types.</p>
-<h3 id="text-mime-types">Text MIME types</h3>
-<p>By default, all response data will be <a href="https://docs.python.org/3/library/base64.html#base64.b64encode">base64 encoded</a> and include <code>isBase64Encoded=True</code> in the response <strong><em>except</em></strong> the default text MIME types and any MIME types included in the <code>TEXT_MIME_TYPES</code> list setting.</p>
-<p>The following types are excluded from binary responses by default:</p>
+<h2 id="configuring-lifespan-events">Configuring Lifespan events</h2>
+<p>Lifespan support is automatically determined unless explicitly turned on or off. A string value option is used to configure lifespan support, the choices are <code>auto</code>, <code>on</code>, and <code>off</code>. </p>
+<h3 id="options">Options</h3>
 <ul>
-<li><code>application/json</code></li>
-<li><code>application/javascript</code></li>
-<li><code>application/xml</code></li>
-<li><code>application/vnd.api+json</code></li>
+<li>
+<p><strong>auto</strong></p>
+<p>Application support for lifespan <strong>is inferred</strong> using the state transitions. Any error that occurs during startup will be logged and the ASGI application cycle will continue unless a <code>lifespan.startup.failed</code> event is sent.</p>
+</li>
+<li>
+<p><strong>on</strong></p>
+<p>Application support for lifespan <strong>is explicit</strong>. Any error that occurs during startup will be raised and a 500 response will be returned.</p>
+</li>
+<li>
+<p><strong>off</strong></p>
+<p>Application support for lifespan <strong>is ignored</strong>. The application will not enter the lifespan cycle context.</p>
+</li>
 </ul>
-<p>Additionally, any <code>Content-Type</code> header prefixed with <code>text/</code> is automatically excluded.</p>
-<h3 id="gzip">GZip</h3>
-<p>If the <code>Content-Encoding</code> header is set to <code>gzip</code>, then a binary response will be returned regardless of MIME type.</p>
+<p>Defaults to <code>auto</code>.</p>
 <h2 id="api">API</h2>
-<p>The <code>HTTPCycle</code> is used by the adapter to communicate message events between the application and AWS. It is a state machine that handles the entire ASGI request and response cycle.</p>
-<h3 id="httpcycle">HTTPCycle</h3>
+<p>The <code>LifespanCycle</code> is a state machine that handles ASGI <code>lifespan</code> events intended to run before and after HTTP and WebSocket requests are handled. </p>
+<h3 id="lifespancycle">LifespanCycle</h3>
 <div class="autodoc">
-<div class="autodoc-signature"><em>class </em><code>mangum.protocols.http.<strong>HTTPCycle</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">scope</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">body</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">text_mime_types</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">state=<HTTPCycleState.REQUEST: 1></em><span class="autodoc-punctuation">, </span><em class="autodoc-param">response=<factory></em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Manages the application cycle for an ASGI <code>http</code> connection.</p>
+<div class="autodoc-signature"><em>class </em><code>mangum.protocols.lifespan.<strong>LifespanCycle</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">app</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">lifespan</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">state=<LifespanCycleState.CONNECTING: 1></em><span class="autodoc-punctuation">, </span><em class="autodoc-param">exception=None</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Manages the application cycle for an ASGI <code>lifespan</code> connection.</p>
 <ul>
-<li><strong>scope</strong> - A dictionary containing the connection scope used to run the ASGI
-application instance.</li>
-<li><strong>body</strong> -  A byte string containing the body content of the request.</li>
-<li><strong>text_mime_types</strong> - A list of mime types of MIME types that should not return
-a binary response in API Gateway.</li>
-<li><strong>state</strong> - An enumerated <code>HTTPCycleState</code> type that indicates the state of the
-ASGI connection.</li>
+<li><strong>app</strong> - An asynchronous callable that conforms to version 3.0 of the ASGI
+specification. This will usually be an ASGI framework application instance.</li>
+<li><strong>lifespan</strong> - A string to configure lifespan support. Choices are <code>auto</code>, <code>on</code>,
+and <code>off</code>. Default is <code>auto</code>.</li>
+<li><strong>state</strong> - An enumerated <code>LifespanCycleState</code> type that indicates the state of
+the ASGI connection.</li>
+<li><strong>exception</strong> - An exception raised while handling the ASGI event.</li>
 <li><strong>app_queue</strong> - An asyncio queue (FIFO) containing messages to be received by the
 application.</li>
-<li><strong>response</strong> - A dictionary containing the response data to return in AWS Lambda.</li>
+<li><strong>startup_event</strong> - An asyncio event object used to control the application
+startup flow.</li>
+<li><strong>shutdown_event</strong> - An asyncio event object used to control the application
+shutdown flow.</li>
+<li><strong>exception</strong> - An exception raised while handling the ASGI event. This may or
+may not be raised depending on the state.</li>
 </ul></div>
 <div class="autodoc-members">
-<div class="autodoc-signature"><code><strong>run</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">app</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Calls the application with the <code>http</code> connection scope.</p></div>
+<div class="autodoc-signature"><code><strong>run</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Calls the application with the <code>lifespan</code> connection scope.</p></div>
 <div class="autodoc-signature"><code><strong>receive</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Awaited by the application to receive ASGI <code>http</code> events.</p></div>
+<div class="autodoc-docstring"><p>Awaited by the application to receive ASGI <code>lifespan</code> events.</p></div>
 <div class="autodoc-signature"><code><strong>send</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">message</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Awaited by the application to send ASGI <code>http</code> events.</p></div>
+<div class="autodoc-docstring"><p>Awaited by the application to send ASGI <code>lifespan</code> events.</p></div>
+<div class="autodoc-signature"><code><strong>startup</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Pushes the <code>lifespan</code> startup event to application queue and handles errors.</p></div>
+<div class="autodoc-signature"><code><strong>shutdown</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>Pushes the <code>lifespan</code> shutdown event to application queue and handles errors.</p></div>
 </div>
 </div>
-<h3 id="httpcyclestate">HTTPCycleState</h3>
+<h4 id="context-manager">Context manager</h4>
+<p>Unlike the <code>HTTPCycle</code> and <code>WebSocketCycle</code> classes, the <code>LifespanCycle</code> is also used as a context manager in the adapter class. If lifespan support is turned off, then the application never enters the lifespan cycle context.</p>
+<div class="codehilite"><pre><span></span><code> <span class="k">with</span> <span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">stack</span><span class="p">:</span>
+    <span class="c1"># Ignore lifespan events entirely if the `lifespan` setting is `off`.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lifespan</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">):</span>
+        <span class="n">asgi_cycle</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">ContextManager</span> <span class="o">=</span> <span class="n">LifespanCycle</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lifespan</span>
+        <span class="p">)</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">asgi_cycle</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The magic methods <code>__enter__</code> and <code>__exit__</code> handle running the async tasks that perform startup and shutdown functions.</p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the event loop for application startup.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">startup</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">exc_type</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]],</span>
+        <span class="n">exc_value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">],</span>
+        <span class="n">traceback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">types</span><span class="o">.</span><span class="n">TracebackType</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the event loop for application shutdown.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">())</span>
+</code></pre></div>
+
+
+<h3 id="lifespancyclestate">LifespanCycleState</h3>
 <div class="autodoc">
-<div class="autodoc-signature"><em>class </em><code>mangum.protocols.http.<strong>HTTPCycleState</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">value</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">names=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">module=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">qualname=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">type=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">start=1</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>The state of the ASGI <code>http</code> connection.</p>
+<div class="autodoc-signature"><em>class </em><code>mangum.protocols.lifespan.<strong>LifespanCycleState</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">value</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">names=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">module=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">qualname=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">type=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">start=1</em><span class="autodoc-punctuation">)</span></div>
+<div class="autodoc-docstring"><p>The state of the ASGI <code>lifespan</code> connection.</p>
 <ul>
-<li><strong>REQUEST</strong> - Initial state. The ASGI application instance will be run with the
-connection scope containing the <code>http</code> type.</li>
-<li><strong>RESPONSE</strong> - The <code>http.response.start</code> event has been sent by the application.
-The next expected message is the <code>http.response.body</code> event, containing the body
-content. An application may pass the <code>more_body</code> argument to send content in chunks,
-however content will always be returned in a single response, never streamed.</li>
-<li><strong>COMPLETE</strong> - The body content from the ASGI application has been completely
-read. A disconnect event will be sent to the application, and the response will
-be returned.</li>
+<li><strong>CONNECTING</strong> - Initial state. The ASGI application instance will be run with
+the connection scope containing the <code>lifespan</code> type.</li>
+<li><strong>STARTUP</strong> - The lifespan startup event has been pushed to the queue to be
+received by the application.</li>
+<li><strong>SHUTDOWN</strong> - The lifespan shutdown event has been pushed to the queue to be
+received by the application.</li>
+<li><strong>FAILED</strong> - A lifespan failure has been detected, and the connection will be
+closed with an error.</li>
+<li><strong>UNSUPPORTED</strong> - An application attempted to send a message before receiving
+the lifepan startup event. If the lifespan argument is "on", then the connection
+will be closed with an error.</li>
 </ul></div>
 </div>
                 
@@ -543,7 +611,7 @@ be returned.</li>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../adapter/" title="Adapter" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../websockets/" title="WebSockets" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -552,19 +620,19 @@ be returned.</li>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Adapter
+                WebSockets
               </div>
             </div>
           </a>
         
         
-          <a href="../websockets/" title="WebSockets" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../asgi-frameworks/" title="ASGI Frameworks" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                WebSockets
+                ASGI Frameworks
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

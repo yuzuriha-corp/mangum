@@ -11,7 +11,7 @@
         <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
       
       
-        <link rel="canonical" href="http://mangum.io/asgi/">
+        <link rel="canonical" href="http://mangum.io/asgi-frameworks/">
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -19,7 +19,7 @@
     
     
       
-        <title>ASGI - Mangum</title>
+        <title>ASGI Frameworks - Mangum</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#asgi" class="md-skip">
+        <a href="#frameworks" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              ASGI
+              ASGI Frameworks
             
           </span>
         </div>
@@ -200,6 +200,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../adapter/" title="Adapter" class="md-nav__link">
+      Adapter
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../http/" title="HTTP" class="md-nav__link">
       HTTP
     </a>
@@ -222,6 +234,18 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../lifespan/" title="Lifespan" class="md-nav__link">
+      Lifespan
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -233,14 +257,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        ASGI
+        ASGI Frameworks
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="ASGI" class="md-nav__link md-nav__link--active">
-      ASGI
+    <a href="./" title="ASGI Frameworks" class="md-nav__link md-nav__link--active">
+      ASGI Frameworks
     </a>
     
       
@@ -279,7 +303,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#frameworks" class="md-nav__link">
+  <a href="#frameworks_1" class="md-nav__link">
     Frameworks
   </a>
   
@@ -340,24 +364,22 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    Middleware
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lifespan" class="md-nav__link">
-    Lifespan
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../release-notes/" title="Release Notes" class="md-nav__link">
+      Release Notes
+    </a>
   </li>
 
     
@@ -407,7 +429,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#frameworks" class="md-nav__link">
+  <a href="#frameworks_1" class="md-nav__link">
     Frameworks
   </a>
   
@@ -468,20 +490,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#middleware" class="md-nav__link">
-    Middleware
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lifespan" class="md-nav__link">
-    Lifespan
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -498,8 +506,8 @@
                   
                 
                 
-                <h1 id="asgi">ASGI</h1>
-<p>Mangum is intended to be a universal <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> (<em>Asynchronous Server Gateway Interface</em>) adapter. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
+                <h1 id="frameworks">Frameworks</h1>
+<p>Mangum is intended to provide support to any <a href="https://asgi.readthedocs.io/en/latest/">ASGI</a> (<em>Asynchronous Server Gateway Interface</em>) application or framework. The <a href="https://simonwillison.net/2009/May/19/djng/?#turtles-all-the-way-down">"turtles all the way down"</a> principle of ASGI allows for a great deal of interoperability across many different implementations, so the adapter should "just work"* for any ASGI application or framework. </p>
 <p><small>* if it doesn't, then please open an <a href="https://github.com/erm/mangum/issues">issue</a>. :)</small></p>
 <h2 id="background">Background</h2>
 <p>We can think about the ASGI framework support without referencing an existing implementation. There are no framework-specific rules or dependencies in the adapter class, and all applications will be treated the same.</p>
@@ -519,7 +527,7 @@
 </code></pre></div>
 
 
-<p>None of application details are important here. The routing decorator, request parameter, and return value of the endpoint method could be anything. The <code>app</code> instance will be a valid <code>app</code> parameter for Mangum so long as the framework exposes an ASGI-compatible interface:</p>
+<p>None of the framework details are important here. The routing decorator, request parameter, and return value of the endpoint method could be anything. The <code>app</code> instance will be a valid <code>app</code> parameter for Mangum so long as the framework exposes an ASGI-compatible interface:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">Scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">:</span> <span class="n">Receive</span><span class="p">,</span> <span class="n">send</span><span class="p">:</span> <span class="n">Send</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="o">...</span>
@@ -528,7 +536,7 @@
 
 <h3 id="limitations">Limitations</h3>
 <p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on a particular deployment circumstance. In some cases it is possible to work around these limitations, such as how Mangum implements WebSocket <a href="https://mangum.io/websockets/#backends">backends</a> to persist connection details across instances, but these kinds of limitations should generally be dealt with outside of Mangum itself.</p>
-<h2 id="frameworks">Frameworks</h2>
+<h2 id="frameworks_1">Frameworks</h2>
 <p>The examples on this page attempt to demonstrate the most basic implementation of a particular framework (usually from official documentation) to highlight the interaction with Mangum. Specific deployment tooling, infrastructure, external dependencies, etc. are not taken into account.</p>
 <h3 id="starlette">Starlette</h3>
 <p><a href="https://www.starlette.io/">Starlette</a> is a lightweight ASGI framework/toolkit, which is ideal for building high performance asyncio services.</p>
@@ -556,7 +564,6 @@
 </code></pre></div>
 
 
-<p>That's it.</p>
 <h3 id="fastapi">FastAPI</h3>
 <p><a href="https://fastapi.tiangolo.com/">FastAPI</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints. </p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
@@ -642,7 +649,7 @@
 
 <span class="n">application</span> <span class="o">=</span> <span class="n">get_asgi_application</span><span class="p">()</span>
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="n">enable_lifespan</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="n">lifespan</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -663,31 +670,8 @@
 <span class="n">application</span> <span class="o">=</span> <span class="n">get_default_application</span><span class="p">()</span>
 
 <span class="n">wrapped_application</span> <span class="o">=</span> <span class="n">guarantee_single_callable</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
-<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">wrapped_application</span><span class="p">,</span> <span class="n">enable_lifespan</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">wrapped_application</span><span class="p">,</span> <span class="n">lifespan</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </code></pre></div>
-
-
-<h2 id="middleware">Middleware</h2>
-<p>In addition to framework compatability, it is possible to wrap applications that are wrapped in ASGI middleware. A case of using middleware comes up in one of Mangum's HTTP API tests. </p>
-<p>The test uses a generic, non-framework ASGI application, but it relies on Starlette's <a href="https://www.starlette.io/middleware/#gzipmiddleware">GZipMiddleware</a> to test the adapter's GZip support:</p>
-<div class="codehilite"><pre><span></span><code> <span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;http&quot;</span>
-        <span class="k">await</span> <span class="n">send</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.start&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-                <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="sa">b</span><span class="s2">&quot;content-type&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;application/json&quot;</span><span class="p">]],</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-
-        <span class="k">await</span> <span class="n">send</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;http.response.body&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="sa">b</span><span class="s2">&quot;Hello world.&quot;</span><span class="p">})</span>
-
- <span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">))</span>
-</code></pre></div>
-
-
-<h2 id="lifespan">Lifespan</h2>
-<p>Mangum implements the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html">lifespan</a> ASGI sub-specification to support startup/shutdown events. Lifespan support is automatically determined by the adapter class unless explicitly disabled.</p>
                 
               
               
@@ -706,7 +690,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../websockets/" title="WebSockets" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../lifespan/" title="Lifespan" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -715,11 +699,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                WebSockets
+                Lifespan
               </div>
             </div>
           </a>
         
+        
+          <a href="../release-notes/" title="Release Notes" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Release Notes
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
