@@ -438,11 +438,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    API
+  <a href="#state-machine" class="md-nav__link">
+    State machine
   </a>
   
-    <nav class="md-nav" aria-label="API">
+    <nav class="md-nav" aria-label="State machine">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -454,11 +454,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#handling-api-gateway-events" class="md-nav__link">
-    Handling API Gateway events
+  <a href="#api-gateway-events" class="md-nav__link">
+    API Gateway events
   </a>
   
-    <nav class="md-nav" aria-label="Handling API Gateway events">
+    <nav class="md-nav" aria-label="API Gateway events">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -752,11 +752,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    API
+  <a href="#state-machine" class="md-nav__link">
+    State machine
   </a>
   
-    <nav class="md-nav" aria-label="API">
+    <nav class="md-nav" aria-label="State machine">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -768,11 +768,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#handling-api-gateway-events" class="md-nav__link">
-    Handling API Gateway events
+  <a href="#api-gateway-events" class="md-nav__link">
+    API Gateway events
   </a>
   
-    <nav class="md-nav" aria-label="Handling API Gateway events">
+    <nav class="md-nav" aria-label="API Gateway events">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1047,7 +1047,7 @@
 <p>The file name or path to an sqlite3 database file. If one does not exist, then it will be created automatically.</p>
 </li>
 </ul>
-<h2 id="api">API</h2>
+<h2 id="state-machine">State machine</h2>
 <p>The <code>WebSocketCycle</code> is used by the adapter to communicate message events between the application and WebSocket client connections in API Gateway using a storage backend to persist the connection <code>scope</code>. It is a state machine that handles the ASGI request and response cycle for each individual message sent by a client.</p>
 <h3 id="websocketcycle">WebSocketCycle</h3>
 <div class="autodoc">
@@ -1074,7 +1074,7 @@ This will only contain a <code>statusCode</code> for WebSocket connections.</li>
 <div class="autodoc-docstring"><p>Awaited by the application to send ASGI <code>websocket</code> events.</p></div>
 </div>
 </div>
-<h4 id="handling-api-gateway-events">Handling API Gateway events</h4>
+<h4 id="api-gateway-events">API Gateway events</h4>
 <p>There are three WebSocket events sent by API Gateway for a WebSocket API connection. Each event requires returning a response immediately, and the information required to create the connection scope is only available in the initial <code>CONNECT</code> event. Messages are only sent in <code>MESSAGE</code> events that occur after the initial connection is established, and they do not include the details of the initial connect event. Due to the stateless nature of AWS Lambda, a storage backend is required to persist the WebSocket connection details for the duration of a client connection.</p>
 <h5 id="connect">CONNECT</h5>
 <p>A persistent connection between the client and a WebSocket API is being initiated. The adapter uses a supported WebSocket backend to store the connection id and initial request information.</p>
