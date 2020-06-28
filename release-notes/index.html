@@ -15,7 +15,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.4">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.c4007cdc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.8435c73a.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -52,15 +52,17 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="brown" data-md-color-accent="orange">
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="brown" data-md-color-accent="orange">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
         
-        <a href="#release-notes" class="md-skip">
+        <a href="#0100-future-release" class="md-skip">
           Skip to content
         </a>
       
@@ -224,18 +226,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../websockets/" title="WebSockets" class="md-nav__link">
-      WebSockets
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../lifespan/" title="Lifespan" class="md-nav__link">
       Lifespan
     </a>
@@ -258,14 +248,24 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../external-links/" title="External Links" class="md-nav__link">
+      External Links
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
@@ -283,8 +283,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -293,6 +291,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0100-future-release" class="md-nav__link">
+    0.10.0 (future release)
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#092" class="md-nav__link">
@@ -316,8 +321,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#090b1-pre-release" class="md-nav__link">
-    0.9.0b1 (pre-release)
+  <a href="#pre-090" class="md-nav__link">
+    pre-0.9.0
   </a>
   
 </li>
@@ -343,8 +348,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -353,6 +356,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0100-future-release" class="md-nav__link">
+    0.10.0 (future release)
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#092" class="md-nav__link">
@@ -376,8 +386,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#090b1-pre-release" class="md-nav__link">
-    0.9.0b1 (pre-release)
+  <a href="#pre-090" class="md-nav__link">
+    pre-0.9.0
   </a>
   
 </li>
@@ -398,59 +408,53 @@
                   
                 
                 
-                <h1 id="release-notes">Release Notes</h1>
+                  <h1>Release Notes</h1>
+                
+                <h2 id="0100-future-release">0.10.0 (future release)</h2>
+<ul>
+<li>
+<p>Remove WebSocket support to focus on HTTP. <a href="https://github.com/jordaneremieff/mangum/issues/127">#127</a></p>
+</li>
+<li>
+<p>Support multiValue headers in response. <a href="https://github.com/jordaneremieff/mangum/pull/129">#129</a>. Thanks <a href="https://github.com/koxudaxi">@koxudaxi</a>!</p>
+</li>
+</ul>
 <h2 id="092">0.9.2</h2>
 <ul>
-<li>Make boto3 dependency optional <a href="https://github.com/erm/mangum/pull/115">#115</a></li>
+<li>Make boto3 dependency optional <a href="https://github.com/jordaneremieff/mangum/pull/115">#115</a></li>
 </ul>
 <h2 id="091">0.9.1</h2>
 <ul>
 <li>
-<p>Refactor lifespan class to be more consistent with other cycle classes and to be more compliant with ASGI spec</p>
+<p>Improve documentation, include CHANGELOG in repo, and include release notes in documentation <a href="https://github.com/jordaneremieff/mangum/pull/111">#111</a></p>
 </li>
 <li>
-<p>Bugfix lifespan startup behaviour, allow lifespan cycle to be used as a context manager in the adapter <a href="https://github.com/erm/mangum/issues/107">#107</a></p>
-</li>
-<li>
-<p>Deprecate <code>enable_lifespan</code> parameter to be replaced by new <code>lifespan</code> option</p>
-</li>
-<li>
-<p>Include CHANGELOG in repo and release notes in documentation <a href="https://github.com/erm/mangum/issues/110">#110</a></p>
-</li>
-<li>
-<p>Update protocol classes generally with  docstrings/comments/better state transitions/more compliant with ASGI spec</p>
-</li>
-<li>
-<p>Overhaul documentation structure and content</p>
+<p>Bugfix lifespan startup behaviour and refactor lifespan cycle, deprecate <code>enable_lifespan</code> parameter, document protocols. <a href="https://github.com/jordaneremieff/mangum/pull/108">#108</a></p>
 </li>
 </ul>
 <h2 id="090">0.9.0</h2>
 <ul>
 <li>
-<p>Improve documentation <a href="https://github.com/erm/mangum/issues/48">#48</a></p>
+<p>Improve documentation <a href="https://github.com/jordaneremieff/mangum/issues/48">#48</a></p>
 </li>
 <li>
-<p>Resolve issue with <code>rawQueryString</code> in HTTP APIs using wrong type <a href="https://github.com/erm/mangum/issues/105">#105</a></p>
+<p>Resolve issue with <code>rawQueryString</code> in HTTP APIs using wrong type <a href="https://github.com/jordaneremieff/mangum/issues/105">#105</a></p>
 </li>
 <li>
-<p>Implement new WebSocket storage backends for managing connections (PostgreSQL, Redis, DyanmoDB, S3, SQlite) using a single <code>dsn</code> configuration parameter <a href="https://github.com/erm/mangum/issues/100">#100</a></p>
+<p>Implement new WebSocket storage backends for managing connections (PostgreSQL, Redis, DyanmoDB, S3, SQlite) using a single <code>dsn</code> configuration parameter <a href="https://github.com/jordaneremieff/mangum/pull/103">#103</a></p>
 </li>
 </ul>
-<h2 id="090b1-pre-release">0.9.0b1 (pre-release)</h2>
-<ul>
-<li>
-<p>Refactor ASGI lifespan handlers and automatically detect if lifespan is supported by an application <a href="https://github.com/erm/mangum/issues/62">#62</a></p>
-</li>
-<li>
-<p>Decouple WebSocket support from DyanmoDB to allow alternative WebSocket storage backends <a href="https://github.com/erm/mangum/issues/52">#52</a></p>
-</li>
-<li>
-<p>Implement new WebSocket storage backends for managing connections (PostgreSQL, Redis, DyanmoDB, S3, SQlite)</p>
-</li>
-<li>
-<p>Improving logging throughout the various classes</p>
-</li>
-</ul>
+<h2 id="pre-090">pre-0.9.0</h2>
+<p>I did not maintain a CHANGELOG prior to 0.9.0, however, I still would like to include a thank you to following people:</p>
+<p><a href="https://github.com/lsorber">@lsorber</a>
+<a href="https://github.com/SKalt">@SKalt</a>
+<a href="https://github.com/koxudaxi">@koxudaxi</a>
+<a href="https://github.com/zachmullen">@zachmullen</a>
+<a href="https://github.com/remorses">@remorses</a>
+<a href="https://github.com/allan-simon">@allan-simon</a>
+<a href="https://github.com/jaehyeon-kim">@jaehyeon-kim</a></p>
+<p>Your contributions to previous releases have greatly improved this project and are very much appreciated.</p>
+<p>Special thanks to <a href="https://github.com/tomchristie">@tomchristie</a> for all of his support, encouragement, and guidance early on, and <a href="https://github.com/rajeev">@rajeev</a> for inspiring this project.</p>
                 
               
               
@@ -469,7 +473,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../asgi-frameworks/" title="ASGI Frameworks" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../external-links/" title="External Links" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -478,7 +482,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                ASGI Frameworks
+                External Links
               </div>
             </div>
           </a>
@@ -503,15 +507,15 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.83fe6e3c.min.js"></script>
-      <script src="../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.37585f48.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

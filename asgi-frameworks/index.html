@@ -15,7 +15,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.4">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.3">
     
     
       
@@ -23,9 +23,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.c4007cdc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.8435c73a.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -52,8 +52,10 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="brown" data-md-color-accent="orange">
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="brown" data-md-color-accent="orange">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -224,18 +226,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../websockets/" title="WebSockets" class="md-nav__link">
-      WebSockets
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../lifespan/" title="Lifespan" class="md-nav__link">
       Lifespan
     </a>
@@ -368,6 +358,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../external-links/" title="External Links" class="md-nav__link">
+      External Links
+    </a>
   </li>
 
     
@@ -535,12 +537,12 @@
 
 
 <h3 id="limitations">Limitations</h3>
-<p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on a particular deployment circumstance. In some cases it is possible to work around these limitations, such as how Mangum implements WebSocket <a href="https://mangum.io/websockets/#backends">backends</a> to persist connection details across instances, but these kinds of limitations should generally be dealt with outside of Mangum itself.</p>
+<p>An application or framework may implement behaviour that is incompatible with the <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">limitations</a> of AWS Lambda, and there may be additional configuration required depending on a particular deployment circumstance. In some cases it is possible to work around these limitations, but these kinds of limitations should generally be dealt with outside of Mangum itself.</p>
 <h2 id="frameworks_1">Frameworks</h2>
-<p>The examples on this page attempt to demonstrate the most basic implementation of a particular framework (usually from official documentation) to highlight the interaction with Mangum. Specific deployment tooling, infrastructure, external dependencies, etc. are not taken into account.</p>
+<p>The examples on this page attempt to demonstrate a basic implementation of a particular framework (usually from official documentation) to highlight the interaction with Mangum. Specific deployment tooling, infrastructure, external dependencies, etc. are not taken into account.</p>
 <h3 id="starlette">Starlette</h3>
 <p><a href="https://www.starlette.io/">Starlette</a> is a lightweight ASGI framework/toolkit, which is ideal for building high performance asyncio services.</p>
-<p>Mangum uses it as a toolkit in tests and as an application framework in the <a href="https://github.com/erm/mangum-example">example</a> project. It is developed by <a href="https://github.com/encode">Encode</a>, a wonderful community and collection of projects that is building the foundations of the Python async web ecosystem.</p>
+<p>Mangum uses it as a toolkit in tests. It is developed by <a href="https://github.com/encode">Encode</a>, a wonderful community and collection of projects that are forming the foundations of the Python async web ecosystem.</p>
 <p>Define an application:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
 <span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
@@ -705,13 +707,13 @@
           </a>
         
         
-          <a href="../release-notes/" title="Release Notes" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../external-links/" title="External Links" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Release Notes
+                External Links
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -738,15 +740,15 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.83fe6e3c.min.js"></script>
-      <script src="../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.37585f48.min.js"
+            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
