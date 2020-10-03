@@ -509,7 +509,7 @@
 </ul>
 <p>Defaults to <code>auto</code>.</p>
 <h2 id="state-machine">State machine</h2>
-<p>The <code>LifespanCycle</code> is a state machine that handles ASGI <code>lifespan</code> events intended to run before and after HTTP requests are handled. </p>
+<p>The <code>LifespanCycle</code> is a state machine that handles ASGI <code>lifespan</code> events intended to run before and after HTTP and WebSocket requests are handled. </p>
 <h3 id="lifespancycle">LifespanCycle</h3>
 <div class="autodoc">
 <div class="autodoc-signature"><em>class </em><code>mangum.protocols.lifespan.<strong>LifespanCycle</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">app</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">lifespan</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">state=<LifespanCycleState.CONNECTING: 1></em><span class="autodoc-punctuation">, </span><em class="autodoc-param">exception=None</em><span class="autodoc-punctuation">)</span></div>
@@ -545,7 +545,7 @@ may not be raised depending on the state.</li>
 </div>
 </div>
 <h4 id="context-manager">Context manager</h4>
-<p>Unlike the <code>HTTPCycle</code> class, the <code>LifespanCycle</code> is also used as a context manager in the adapter class. If lifespan support is turned off, then the application never enters the lifespan cycle context.</p>
+<p>Unlike the <code>HTTPCycle</code> and <code>WebSocketCycle</code> classes, the <code>LifespanCycle</code> is also used as a context manager in the adapter class. If lifespan support is turned off, then the application never enters the lifespan cycle context.</p>
 <div class="codehilite"><pre><span></span><code> <span class="k">with</span> <span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">stack</span><span class="p">:</span>
     <span class="c1"># Ignore lifespan events entirely if the `lifespan` setting is `off`.</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lifespan</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">):</span>
