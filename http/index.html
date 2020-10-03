@@ -264,8 +264,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gzip" class="md-nav__link">
-    GZip
+  <a href="#compression" class="md-nav__link">
+    Compression
   </a>
   
 </li>
@@ -398,8 +398,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gzip" class="md-nav__link">
-    GZip
+  <a href="#compression" class="md-nav__link">
+    Compression
   </a>
   
 </li>
@@ -482,8 +482,8 @@
 <li><code>application/vnd.api+json</code></li>
 </ul>
 <p>Additionally, any <code>Content-Type</code> header prefixed with <code>text/</code> is automatically excluded.</p>
-<h3 id="gzip">GZip</h3>
-<p>If the <code>Content-Encoding</code> header is set to <code>gzip</code>, then a binary response will be returned regardless of MIME type.</p>
+<h3 id="compression">Compression</h3>
+<p>If the <code>Content-Encoding</code> header is set to <code>gzip</code> or <code>br</code>, then a binary response will be returned regardless of MIME type.</p>
 <h2 id="state-machine">State machine</h2>
 <p>The <code>HTTPCycle</code> is used by the adapter to communicate message events between the application and AWS. It is a state machine that handles the entire ASGI request and response cycle.</p>
 <h3 id="httpcycle">HTTPCycle</h3>
