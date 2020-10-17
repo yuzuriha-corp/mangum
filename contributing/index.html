@@ -9,7 +9,7 @@
         <meta name="description" content="AWS Lambda & API Gateway support for ASGI">
       
       
-        <link rel="canonical" href="http://mangum.io/http/">
+        <link rel="canonical" href="http://mangum.io/contributing/">
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
@@ -17,7 +17,7 @@
     
     
       
-        <title>HTTP - Mangum</title>
+        <title>Contributing - Mangum</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#http" class="md-skip">
+        <a href="#contributing-to-mangum" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              HTTP
+              Contributing
             
           </span>
         </div>
@@ -212,96 +212,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        HTTP
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../http/" class="md-nav__link">
       HTTP
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-binary-responses" class="md-nav__link">
-    Configuring binary responses
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring binary responses">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#text-mime-types" class="md-nav__link">
-    Text MIME types
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compression" class="md-nav__link">
-    Compression
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state-machine" class="md-nav__link">
-    State machine
-  </a>
-  
-    <nav class="md-nav" aria-label="State machine">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#httpcycle" class="md-nav__link">
-    HTTPCycle
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#httpcyclestate" class="md-nav__link">
-    HTTPCycleState
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -345,11 +260,170 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../contributing/" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Contributing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Contributing
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-pull-request" class="md-nav__link">
+    Creating a pull request
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a pull request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-repository" class="md-nav__link">
+    Setting up the repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developing-the-project-locally" class="md-nav__link">
+    Developing the project locally
+  </a>
+  
+    <nav class="md-nav" aria-label="Developing the project locally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+    <nav class="md-nav" aria-label="Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverage-requirements" class="md-nav__link">
+    Coverage requirements
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint" class="md-nav__link">
+    Lint
+  </a>
+  
+    <nav class="md-nav" aria-label="Lint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-style-and-formatting" class="md-nav__link">
+    Code style and formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-type-checking" class="md-nav__link">
+    Static type checking
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-issue-tracker" class="md-nav__link">
+    Using the issue tracker
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the issue tracker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-support" class="md-nav__link">
+    Technical support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-requests" class="md-nav__link">
+    Feature requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thank-you" class="md-nav__link">
+    Thank you
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -389,23 +463,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuring-binary-responses" class="md-nav__link">
-    Configuring binary responses
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuring binary responses">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#text-mime-types" class="md-nav__link">
-    Text MIME types
+  <a href="#contents" class="md-nav__link">
+    Contents
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-pull-request" class="md-nav__link">
+    Creating a pull request
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a pull request">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#compression" class="md-nav__link">
-    Compression
+  <a href="#setting-up-the-repository" class="md-nav__link">
+    Setting up the repository
   </a>
   
 </li>
@@ -416,29 +490,103 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#state-machine" class="md-nav__link">
-    State machine
+  <a href="#developing-the-project-locally" class="md-nav__link">
+    Developing the project locally
   </a>
   
-    <nav class="md-nav" aria-label="State machine">
+    <nav class="md-nav" aria-label="Developing the project locally">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#httpcycle" class="md-nav__link">
-    HTTPCycle
+  <a href="#setup" class="md-nav__link">
+    Setup
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#httpcyclestate" class="md-nav__link">
-    HTTPCycleState
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+    <nav class="md-nav" aria-label="Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverage-requirements" class="md-nav__link">
+    Coverage requirements
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint" class="md-nav__link">
+    Lint
+  </a>
+  
+    <nav class="md-nav" aria-label="Lint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-style-and-formatting" class="md-nav__link">
+    Code style and formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-type-checking" class="md-nav__link">
+    Static type checking
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-issue-tracker" class="md-nav__link">
+    Using the issue tracker
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the issue tracker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technical-support" class="md-nav__link">
+    Technical support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-requests" class="md-nav__link">
+    Feature requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thank-you" class="md-nav__link">
+    Thank you
+  </a>
   
 </li>
       
@@ -455,80 +603,99 @@
               
                 
                 
-                <h1 id="http">HTTP</h1>
-<p>Mangum provides support for both <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html">REST</a> and the newer <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html">HTTP</a> APIs in API Gateway. It also includes configurable binary response support.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
-<span class="kn">from</span> <span class="nn">fastapi.middleware.gzip</span> <span class="kn">import</span> <span class="n">GZipMiddleware</span>
-<span class="kn">from</span> <span class="nn">mangum</span> <span class="kn">import</span> <span class="n">Mangum</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
-<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">,</span> <span class="n">minimum_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s2">&quot;somebigcontent&quot;</span>
-
-<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">TEXT_MIME_TYPES</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;application/vnd.some.type&quot;</span><span class="p">])</span>
+                <h1 id="contributing-to-mangum">Contributing to Mangum</h1>
+<p>Hello. Contributions to this project are highly encouraged and appreciated. This document will outline some general guidelines for how to get started.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#creating-a-pull-request">Creating a pull request</a></li>
+<li><a href="#setting-up-the-repository">Setting up the repository</a></li>
+<li><a href="#developing-the-project-locally">Developing the project locally</a></li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#test">Test</a><ul>
+<li><a href="#coverage-requirements">Coverage requirements</a></li>
+</ul>
+</li>
+<li><a href="#lint">Lint</a><ul>
+<li><a href="#code-style-and-formatting">Code style and formatting</a></li>
+<li><a href="#static-type-checking">Static type checking</a></li>
+</ul>
+</li>
+<li><a href="#using-the-issue-tracker">Using the issue tracker</a></li>
+<li><a href="#technical-support">Technical support</a></li>
+<li><a href="#feature-requests">Feature requests</a></li>
+</ul>
+<h2 id="creating-a-pull-request">Creating a pull request</h2>
+<p>Non-trivial changes, especially those that could impact existing behaviour, should have an associated issue created for discussion. An issue isn't strictly required for larger changes, but it can be helpful to discuss first.</p>
+<p>Minor changes generally should not require a new issue and can be explained in the pull request description.</p>
+<h3 id="setting-up-the-repository">Setting up the repository</h3>
+<p>To create a pull request, you must first <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-forks">fork</a> the repository in GitHub, then clone the fork locally.</p>
+<div class="codehilite"><pre><span></span><code>git clone git@github.com:&lt;YOUR-USERNAME&gt;/mangum.git
 </code></pre></div>
 
-<h2 id="configuring-binary-responses">Configuring binary responses</h2>
-<p>Binary responses are determined using the <code>Content-Type</code> and <code>Content-Encoding</code> headers from the event request and a list of text MIME types.</p>
-<h3 id="text-mime-types">Text MIME types</h3>
-<p>By default, all response data will be <a href="https://docs.python.org/3/library/base64.html#base64.b64encode">base64 encoded</a> and include <code>isBase64Encoded=True</code> in the response <strong><em>except</em></strong> the default text MIME types and any MIME types included in the <code>TEXT_MIME_TYPES</code> list setting.</p>
-<p>The following types are excluded from binary responses by default:</p>
+<p>Then add the upstream remote to keep the forked repo in sync with the original.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> mangum
+git remote add upstream git://github.com/jordaneremieff/mangum.git
+git fetch upstream
+</code></pre></div>
+
+<p>Then to keep in sync with changes in the primary repository, you pull the upstream changes into your local fork.</p>
+<div class="codehilite"><pre><span></span><code>git pull upstream main
+</code></pre></div>
+
+<h2 id="developing-the-project-locally">Developing the project locally</h2>
+<p>There are a few scripts in place to assist with local development, the following scripts are located in the <code>/scripts</code> directory:</p>
+<h3 id="setup">Setup</h3>
+<p>Running the setup script will create a local Python virtual environment. It assumes that <code>python3.7</code> is available in the path and will install the development dependencies located in <code>requirements.txt</code>.</p>
+<div class="codehilite"><pre><span></span><code>./scripts/setup
+</code></pre></div>
+
+<p>Alternatively, you may create a virtual environment and install the requirements manually:</p>
+<div class="codehilite"><pre><span></span><code>python -m venv venv
+. venv/bin/active
+pip install -r requirements.txt
+</code></pre></div>
+
+<p>This environment is used to run the tests. Python versions 3.6, 3.7, and 3.8 are supported.</p>
+<h3 id="test">Test</h3>
+<p>The test script will run all the test cases with <a href="https://docs.pytest.org/en/stable/">PyTest</a> using the path for the virtual environment created in the setup step (above).</p>
+<div class="codehilite"><pre><span></span><code>./scripts/test
+</code></pre></div>
+
+<p>It also runs <a href="https://coverage.readthedocs.io/en/coverage-5.3/">Coverage</a> to produce a code coverage report.</p>
+<h4 id="coverage-requirements">Coverage requirements</h4>
+<p>The coverage script is intended to fail under 100% test coverage, but this is not a strict requirement for contributions. Generally speaking at least one test should be included in a PR, but it is okay to use <code># pragma: no cover</code> comments in the code to exclude specific coverage cases from the build.</p>
+<h3 id="lint">Lint</h3>
+<p>The linting script will handle running <a href="https://github.com/python/mypy">mypy</a> for static type checking, and <a href="https://github.com/psf/black">black</a> for code formatting.</p>
+<div class="codehilite"><pre><span></span><code>./scripts/lint
+</code></pre></div>
+
+<h4 id="code-style-and-formatting">Code style and formatting</h4>
+<p>Black formatting is required for all files with a maximum line-length of <code>88</code> (black's default) and double-quotes <code>"</code> are preferred over single-quotes <code>'</code>, otherwise there aren't specific style guidelines.</p>
+<h4 id="static-type-checking">Static type checking</h4>
+<p>Mypy is used to handle static type checking in the build, and <a href="https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html">type annotations</a> should be included when making changes or additions to the code. However, it is okay to use <code># type: ignore</code> comments when it is unclear what type to use, or if the annotation required to pass the type checker significantly decreases readability.</p>
+<h2 id="using-the-issue-tracker">Using the issue tracker</h2>
+<p>The issue <a href="https://github.com/jordaneremieff/mangum/issues">tracker</a> can be used for different types of discussion, but it is mainly intended for items that are relevant to this project specifically.</p>
+<p>Here are a few things you might consider before opening a new issue:</p>
 <ul>
-<li><code>application/json</code></li>
-<li><code>application/javascript</code></li>
-<li><code>application/xml</code></li>
-<li><code>application/vnd.api+json</code></li>
+<li>
+<p>Is this covered in the <a href="https://mangum.io/">documentation</a>?</p>
+</li>
+<li>
+<p>Is there already a related issue in the <a href="https://github.com/jordaneremieff/mangum/issues">tracker</a>?</p>
+</li>
+<li>
+<p>Is this a problem related to Mangum itself or a third-party dependency?</p>
+</li>
 </ul>
-<p>Additionally, any <code>Content-Type</code> header prefixed with <code>text/</code> is automatically excluded.</p>
-<h3 id="compression">Compression</h3>
-<p>If the <code>Content-Encoding</code> header is set to <code>gzip</code> or <code>br</code>, then a binary response will be returned regardless of MIME type.</p>
-<h2 id="state-machine">State machine</h2>
-<p>The <code>HTTPCycle</code> is used by the adapter to communicate message events between the application and AWS. It is a state machine that handles the entire ASGI request and response cycle.</p>
-<h3 id="httpcycle">HTTPCycle</h3>
-<div class="autodoc">
-<div class="autodoc-signature"><em>class </em><code>mangum.protocols.http.<strong>HTTPCycle</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">scope</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">text_mime_types</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">state=<HTTPCycleState.REQUEST: 1></em><span class="autodoc-punctuation">, </span><em class="autodoc-param">response=<factory></em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Manages the application cycle for an ASGI <code>http</code> connection.</p>
-<ul>
-<li><strong>scope</strong> - A dictionary containing the connection scope used to run the ASGI
-application instance.</li>
-<li><strong>body</strong> -  A byte string containing the body content of the request.</li>
-<li><strong>text_mime_types</strong> - A list of mime types of MIME types that should not return
-a binary response in API Gateway.</li>
-<li><strong>state</strong> - An enumerated <code>HTTPCycleState</code> type that indicates the state of the
-ASGI connection.</li>
-<li><strong>app_queue</strong> - An asyncio queue (FIFO) containing messages to be received by the
-application.</li>
-<li><strong>response</strong> - A dictionary containing the response data to return in AWS Lambda.</li>
-</ul></div>
-<div class="autodoc-members">
-<div class="autodoc-signature"><code><strong>run</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">app</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Calls the application with the <code>http</code> connection scope.</p></div>
-<div class="autodoc-signature"><code><strong>receive</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Awaited by the application to receive ASGI <code>http</code> events.</p></div>
-<div class="autodoc-signature"><code><strong>send</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">self</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">message</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>Awaited by the application to send ASGI <code>http</code> events.</p></div>
-</div>
-</div>
-<h3 id="httpcyclestate">HTTPCycleState</h3>
-<div class="autodoc">
-<div class="autodoc-signature"><em>class </em><code>mangum.protocols.http.<strong>HTTPCycleState</strong></code><span class="autodoc-punctuation">(</span><em class="autodoc-param">value</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">names=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">*</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">module=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">qualname=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">type=None</em><span class="autodoc-punctuation">, </span><em class="autodoc-param">start=1</em><span class="autodoc-punctuation">)</span></div>
-<div class="autodoc-docstring"><p>The state of the ASGI <code>http</code> connection.</p>
-<ul>
-<li><strong>REQUEST</strong> - Initial state. The ASGI application instance will be run with the
-connection scope containing the <code>http</code> type.</li>
-<li><strong>RESPONSE</strong> - The <code>http.response.start</code> event has been sent by the application.
-The next expected message is the <code>http.response.body</code> event, containing the body
-content. An application may pass the <code>more_body</code> argument to send content in chunks,
-however content will always be returned in a single response, never streamed.</li>
-<li><strong>COMPLETE</strong> - The body content from the ASGI application has been completely
-read. A disconnect event will be sent to the application, and the response will
-be returned.</li>
-</ul></div>
-</div>
+<p>It may still be perfectly valid to open an issue if one or more of these is true, but thinking about these questions might help reveal an existing answer sooner.</p>
+<h3 id="technical-support">Technical support</h3>
+<p>You may run into problems running Mangum that are related to a deployment tool (e.g. <a href="https://www.serverless.com/">Serverless Framework</a>), an ASGI framework (e.g. <a href="https://fastapi.tiangolo.com/">FastAPI</a>), or some other external dependency. It is okay to use the tracker to resolve these kinds of issues, but keep in mind that this project does not guaruntee support for all the features of any specific ASGI framework or external tool.</p>
+<p><strong>Note</strong>: These issues will typlically be closed, but it is fine to continue discussion on a closed issue. These issues will be re-opened only if a problem is discovered in Mangum itself.</p>
+<h3 id="feature-requests">Feature requests</h3>
+<p>This project is intended to be small and focused on providing an adapter class for ASGI applications deployed in AWS Lambda. Feature requests related to this use-case will generally be considered, but larger features that increase the overall scope of Mangum are less likely to be included.</p>
+<p>If you have a large feature request, please make an issue with sufficient detail and it can be discussed. Some feature requests may end up being rejected initially and re-considered later.</p>
+<h2 id="thank-you">Thank you</h2>
+<p>:)</p>
                 
               
               
@@ -547,7 +714,7 @@ be returned.</li>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../adapter/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../external-links/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -556,19 +723,19 @@ be returned.</li>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Adapter
+                External Links
               </div>
             </div>
           </a>
         
         
-          <a href="../lifespan/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../release-notes/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Lifespan
+                Release Notes
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
